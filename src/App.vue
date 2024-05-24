@@ -1,30 +1,32 @@
+<script setup lang="ts">
+import { onErrorCaptured } from 'vue'
+import { RouterLink, RouterView } from 'vue-router/auto'
+
+onErrorCaptured((err, instance, info) => {
+  console.error('erreur : ', err, '\ninfo : ', info, '\ncomposant : ', instance)
+  return true
+})
+</script>
+
 <template>
-  <nav>
-    <router-link to="/">salut</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <RouterLink to="/" class="text-red-500 underline"> Accueil </RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/offres" class="text-red-500 underline">Toutes les offres</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/agents" class="text-red-500 underline">Tous les agents</RouterLink>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <RouterView v-slot="{ Component }">
+    <Suspense>
+      <component :is="Component" />
+    </Suspense>
+  </RouterView>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
