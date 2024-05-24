@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="gros caca.js App"/>
+    <HelloWorld msg="gros pipi.js App"/>
   </div>
 </template>
 
