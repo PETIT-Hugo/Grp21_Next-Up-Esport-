@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="gros pipi.js App"/>
+    <HelloWorld msg="vue.js App"/>
   </div>
 </template>
 
