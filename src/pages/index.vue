@@ -1,6 +1,7 @@
 <script setup lang="ts">
+//
 </script>
 
 <template>
-   test ici c'est l'index de vue
+  <h1 class="text-2xl">Bonjour monde !</h1>
 </template>

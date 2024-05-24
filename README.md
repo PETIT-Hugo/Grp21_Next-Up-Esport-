@@ -1,4 +1,3 @@
-
 # R213-Agence
 
 # Travail TP2
@@ -66,7 +65,7 @@ const maisonsListe = /* coller ici le tableau d'objet */
 ### Code du composant
 
 Faire le fichier [`/src/components/MaisonCard.vue`](/src/components/MaisonCard.vue)\
-Prendre modèle sur le CM/TD [`PersonneCard.vue`](https://github.com/ppierre/vue-base-tailwind/tree/vue3.3-test-personne#composant-avec-param%C3%A9tre)
+Prendre modèle sur le CM/TD [`PersonneCard.vue`](https://github.com/ppierre/vue-base-tailwind/tree/vue3.3-test-personne?tab=readme-ov-file#composant-avec-param%C3%A8tre)
 
 Pour le code du template, vous pouvez utiliser un des plugins Figma suivants :
 
@@ -76,26 +75,30 @@ Pour le code du template, vous pouvez utiliser un des plugins Figma suivants :
 Pour les `props` du composant `MaisonCard`, bien utiliser le type fait manuellement : `MaisonRecord` à importer de `/src/types.ts`.
 
 ```ts
-import type { MaisonResponse } from '@/types'
+import type { MaisonRecord } from '@/types'
 
-const props: MaisonResponse = defineProps<MaisonResponse>()
+const props = defineProps<MaisonRecord>()
 ```
 
 ### Tester le composant
 
-Dans le `<template>` de `App.vue`, ajouter :
+Dans le `<script setup>` de `/src/pages/index.vue`, ajouter au début l'import du composant :
+
+```ts
+import MaisonCard from '@/components/MaisonCard.vue'
+```
+
+Dans le `<template>` de `/src/pages/index.vue`, ajouter l'appel du composant :
 
 ```html
 <MaisonCard v-bind="maisonsListe[0]" />
 ```
 
-(Vérifiez que l'import du composant a été automatiquement ajouté.)
-
 ## Afficher les données
 
 Afficher toutes les maisons avec un `v-for`comme [vu en CM/TD][CM-boucle-objet]
 
-[CM-boucle-objet]: https://github.com/ppierre/vue-base-tailwind/tree/vue3.3-test-personne#usage-dans-une-boucle
+[CM-boucle-objet]: https://github.com/ppierre/vue-base-tailwind/tree/vue3.3-test-personne?tab=readme-ov-file#usage-dans-une-boucle
 
 ## PocketBase (données dynamiques)
 
@@ -126,7 +129,7 @@ npm run typegen
 Dans `pages/index.vue` :
 
 - Remplacer l'import du type `MaisonResponse` depuis `@/types` par `@/pocketbase-types`.
-- Vérifiez que l'éditeur ne signale pas d'erreurs.
+- Vérifiez que l'éditeur ne signale pas d'erreurs (sauf sur `collectionName`).
   ```ts
   const maisonsListe:MaisonResponse[] = /* ... */
   ```
@@ -158,7 +161,8 @@ Dans `/src/components/MaisonCard.vue` :
   import type { MaisonResponse } from '@/pocketbase-types'
   import ImgPb from './ImgPb.vue'
 
-  const props = defineProps<MaisonResponse>()
+  // ajout <any> lié à un bug
+  const props = defineProps<MaisonResponse<any>>()
 </script>
 <template>
   <div>
@@ -230,7 +234,7 @@ Faire le fichier `/src/pages/offres/[id].vue`
 
 ```html
 <ul>
-  <li v-for="uneMaison of maisonsListe" :v-key="uneMaison.id">
+  <li v-for="uneMaison of maisonsListe" :key="uneMaison.id">
     <RouterLink
       :to="{
         name: '/offres/[id]',
