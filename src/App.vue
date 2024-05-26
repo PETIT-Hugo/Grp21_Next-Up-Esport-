@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onErrorCaptured } from 'vue'
 import { RouterLink, RouterView } from 'vue-router/auto'
+import Pocketbase from 'pocketbase'
 import Footer from './components/FooterPage.vue'
 import Header from './components/HeaderPage.vue'
 import DiscordLogo from './components/icons/DiscordLogo.vue'
