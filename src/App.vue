@@ -16,15 +16,7 @@ onErrorCaptured((err, instance, info) => {
 </script>
 
 <template>
-  <header>
-    <nav>
-      <ul>
-        <li>
-          <RouterLink to="/" class="text-red-500 underline"> Accueil </RouterLink>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  
   <Header />
   <main>
     <RouterView />

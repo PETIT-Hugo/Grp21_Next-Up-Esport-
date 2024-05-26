@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import FlecheIcon from './icons/FlecheIcon.vue';
-import LogoNextUpFooter from './icons/LogoNextUpFooter.vue';
+import LogoNextUp from './icons/LogoNextUp.vue';
 import DiscordLogo from './icons/DiscordLogo.vue';
 import InstagramLogo from './icons/InstagramLogo.vue';
 import TwitterLogo from './icons/TwitterLogo.vue';
@@ -71,7 +71,7 @@ import TwitterLogo from './icons/TwitterLogo.vue';
     
     
       <div class="flex justify-end">
-        <LogoNextUpFooter />
+        <LogoNextUp />
       </div>
       <!-- Flèche SVG et texte de droits d'auteur -->
       <div class="flex items-center justify-end text-sm text-white mt-4 uppercase-title">
