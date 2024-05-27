@@ -3,6 +3,5 @@
 </script>
 
 <template>
-    <h1>Test API</h1>
-    
+    <h1>A propos</h1>
 </template>

@@ -43,10 +43,10 @@ const toggleMenu = () => {
       <nav class="relative flex items-center justify-center flex-grow md:flex-none md:w-1/2">
         <!-- Menu for desktop -->
         <ul class="hidden md:flex md:gap-16">
-          <li><RouterLink to="/about" class="text-white hover:text-gray-300 menu-element">À propos</RouterLink></li>
-          <li><RouterLink to="/login" class="text-white hover:text-gray-300 menu-element">Connexion</RouterLink></li>
+          <li><RouterLink to="/apropos" class="text-white hover:text-gray-300 menu-element">À propos</RouterLink></li>
+          <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Connexion</RouterLink></li>
           <!-- Cadre bleu agrandi autour du bouton "Inscription" -->
-          <li><RouterLink to="/register" class="text-white hover:text-gray-300 menu-element bg-[#36C1ED] rounded-md px-10 py-4">Inscription</RouterLink></li>
+          <button><RouterLink to="/inscription" class="text-white hover:text-gray-300 menu-element bg-[#36C1ED] rounded-md px-10 py-4">Inscription</RouterLink></button>
         </ul>
         <!-- Burger menu icon for mobile -->
         <div class="md:hidden flex items-center ml-auto" @click="toggleMenu">
@@ -62,9 +62,9 @@ const toggleMenu = () => {
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
       <ul class="text-white text-center">
-        <li class="py-4 border-b border-gray-700"><RouterLink to="/about" @click="toggleMenu">À propos</RouterLink></li>
-        <li class="py-4 border-b border-gray-700"><RouterLink to="/login" @click="toggleMenu">Connexion</RouterLink></li>
-        <li class="py-4"><RouterLink to="/register" @click="toggleMenu">Inscription</RouterLink></li>
+        <li class="py-4 border-b border-gray-700"><RouterLink to="/apropos" @click="toggleMenu">À propos</RouterLink></li>
+        <li class="py-4 border-b border-gray-700"><RouterLink to="/connexion" @click="toggleMenu">Connexion</RouterLink></li>
+        <li class="py-4"><RouterLink to="/inscription" @click="toggleMenu">Inscription</RouterLink></li>
       </ul>
     </div>
   </header>

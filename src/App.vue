@@ -19,8 +19,22 @@ onErrorCaptured((err, instance, info) => {
 <template>
   
   <Header />
-  <main>
-    <RouterView />
+ <main>
+      <nav>
+      <ul>
+        <li>
+          <RouterLink to="/" class="text-red-500 underline"> Accueil </RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/inscription" class="text-red-500 underline"> Inscription </RouterLink>
+        </li>
+      </ul>
+    </nav>
+    <RouterView v-slot="{ Component }">
+    <Suspense>
+      <component :is="Component" />
+    </Suspense>
+  </RouterView>
   </main>
   <Footer />
   

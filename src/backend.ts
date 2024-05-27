@@ -5,6 +5,6 @@ export const pb = new PocketBase('https://next-up-esport.petit-hugommi1.fr:443')
 
 // Copier ici les fonctions developpées en R214 | Système d'information
 
-try {
-    
+export async function signUp(newUtilisateur) {
+    await pb.collection('maison').create();
 }
