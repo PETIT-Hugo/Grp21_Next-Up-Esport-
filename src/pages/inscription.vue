@@ -6,6 +6,7 @@ const pseudoRiot = ref('')
 const mail = ref('')
 const pseudoNextUp = ref('')
 const mdp = ref('')
+const confirmMdp = ref('')
 const statusMessage = ref('Inscrivez-vous dès maintenant !')
 
 const validatePseudoRiot = (pseudo: string): boolean => {
@@ -23,6 +24,10 @@ const validatePseudoNextUp = (pseudo: string): boolean => {
   return noSpaceRegex.test(pseudo)
 }
 
+const validatePasswords = (password: string, confirmPassword: string): boolean => {
+  return password === confirmPassword
+}
+
 
 const handleSignUp = async () => {
   try {
@@ -38,6 +43,11 @@ const handleSignUp = async () => {
 
       if (!validatePseudoNextUp(pseudoNextUp.value)) {
       statusMessage.value = 'Le pseudo Next Up ne doit pas contenir d\'espaces.'
+      return
+    }
+
+      if (!validatePasswords(mdp.value, confirmMdp.value)) {
+      statusMessage.value = 'Les mots de passe ne correspondent pas.'
       return
     }
 
@@ -93,6 +103,10 @@ const handleSignUp = async () => {
   <p>
     <label>Mot de passe</label>
     <input type="password" minlength="1" placeholder="strongMDP123" class="ml-5" v-model="mdp">
+  </p>
+  <p>
+    <label>Confirmer le mot de passe</label>
+    <input type="password" minlength="1" placeholder="strongMDP123" class="ml-5" v-model="confirmMdp">
   </p>
   <button @click="handleSignUp" class="bg-slate-400">S'inscrire</button>
   <label id="status" v-text="statusMessage"></label>
