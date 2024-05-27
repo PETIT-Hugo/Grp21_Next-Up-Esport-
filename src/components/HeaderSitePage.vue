@@ -3,6 +3,8 @@ import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import LogoNextUp from './icons/LogoNextUp.vue';
 import UpCoin from './icons/UpCoin.vue';
+import PhotoDeProfil from './icons/PhotoDeProfil.vue';
+import FlecheBleu from './icons/FlecheBleu.vue';
 
 
 const isMenuOpen = ref(false);
@@ -48,7 +50,7 @@ const toggleMenu = () => {
       <RouterLink to="/" class="flex items-center">
         <LogoNextUp class="w-[30vw] max-w-[300px] min-w-[150px] mr-4" />
       </RouterLink>
-      <nav class="relative flex items-center justify-center flex-grow md:flex-none md:w-1/2">
+      <nav class="relative flex items-center justify-center flex-grow md:flex-none md:w-3/5">
         <!-- Menu for desktop -->
         <ul class="hidden md:flex md:gap-16">
           <li><RouterLink to="/apropos" class="text-white hover:text-gray-300 menu-element">Mes tournois</RouterLink></li>
@@ -65,7 +67,15 @@ const toggleMenu = () => {
         <ul class="hidden md:flex md:gap-16">
             
             <li><RouterLink to="/connexion" class="text-[#36C1ED] menu-element-upcoins">1500</RouterLink></li>
+            <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">&nbsp;</RouterLink></li>
+            
         </ul>
+
+        <ul class="hidden justify-center md:flex md:gap-2">
+            <PhotoDeProfil class="w-12 h-12" />
+            <FlecheBleu class="w-12 h-12" />
+        </ul>
+        
         <!-- Burger menu icon for mobile -->
         <div class="md:hidden flex items-center ml-auto" @click="toggleMenu">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#36C1ED] cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -80,9 +90,9 @@ const toggleMenu = () => {
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
       <ul class="text-white text-center">
-        <li class="py-4 border-b border-gray-700"><RouterLink to="/apropos" @click="toggleMenu">À propos</RouterLink></li>
-        <li class="py-4 border-b border-gray-700"><RouterLink to="/connexion" @click="toggleMenu">Connexion</RouterLink></li>
-        <li class="py-4"><RouterLink to="/inscription" @click="toggleMenu">Inscription</RouterLink></li>
+        <li class="py-4 border-b border-gray-700"><RouterLink to="/apropos" @click="toggleMenu">Mes tournois</RouterLink></li>
+        <li class="py-4 border-b border-gray-700"><RouterLink to="/connexion" @click="toggleMenu">Classement</RouterLink></li>
+        <li class="py-4"><RouterLink to="/inscription" @click="toggleMenu">Boutique</RouterLink></li>
       </ul>
     </div>
   </header>
