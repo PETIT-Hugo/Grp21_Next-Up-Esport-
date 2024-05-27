@@ -14,3 +14,16 @@ export async function signUp(newUser: any) {
     throw error
   }
 }
+
+export async function checkIfUserExists(field: string, value: string): Promise<boolean> {
+  try {
+    const result = await pb.collection('utilisateur').getFirstListItem(`${field}="${value}"`)
+    return !!result
+  } catch (error) {
+    if ((error as any).status === 404) {
+      return false
+    }
+    console.error("Erreur lors de la vérification de l'utilisateur:", error)
+    throw error
+  }
+}
