@@ -29,6 +29,9 @@ onErrorCaptured((err, instance, info) => {
         <li>
           <RouterLink to="/inscription" class="text-red-500 underline"> Inscription </RouterLink>
         </li>
+        <li>
+          <RouterLink to="/connexion" class="text-red-500 underline"> Connexion </RouterLink>
+        </li>
       </ul>
     </nav>
     <RouterView v-slot="{ Component }">
