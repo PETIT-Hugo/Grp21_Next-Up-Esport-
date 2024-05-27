@@ -3,7 +3,8 @@ import { onErrorCaptured } from 'vue'
 import { RouterLink, RouterView } from 'vue-router/auto'
 import Pocketbase from 'pocketbase'
 import Footer from './components/FooterPage.vue'
-import Header from './components/HeaderPage.vue'
+import Header from'./components/HeaderPage.vue' 
+import HeaderSite from'./components/HeaderSitePage.vue' 
 import DiscordLogo from './components/icons/DiscordLogo.vue'
 import InstagramLogo from './components/icons/InstagramLogo.vue'
 import TwitterLogo from './components/icons/TwitterLogo.vue'
@@ -18,7 +19,7 @@ onErrorCaptured((err, instance, info) => {
 
 <template>
   
-  <Header />
+  <HeaderSite />
  <main>
       <nav>
       <ul>
