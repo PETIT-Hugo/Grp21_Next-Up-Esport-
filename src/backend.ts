@@ -3,7 +3,6 @@ import { type TypedPocketBase } from './pocketbase-types.js'
 
 export const pb = new PocketBase('https://next-up-esport.petit-hugommi1.fr:443')
 
-// Copier ici les fonctions developpées en R214 | Système d'information
 
 export async function signUp(newUser: any) {
   try {
@@ -24,6 +23,25 @@ export async function checkIfUserExists(field: string, value: string): Promise<b
       return false
     }
     console.error("Erreur lors de la vérification de l'utilisateur:", error)
+    throw error
+  }
+}
+
+export async function signIn(mail: string, mdp: string) {
+  try {
+    const user = await pb.collection('utilisateur').getFirstListItem(`mail="${mail}"`)
+
+    if (!user) {
+      throw new Error('Utilisateur non trouvé')
+    }
+
+    if (user.mdp !== mdp) {
+      throw new Error('Mot de passe incorrect')
+    }
+
+    return user
+  } catch (error) {
+    console.error('Erreur lors de la connexion:', error)
     throw error
   }
 }
