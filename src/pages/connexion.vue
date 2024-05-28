@@ -15,11 +15,11 @@ const handleSignIn = async () => {
 
     const user = await signIn(mail.value, mdp.value);
     statusMessage.value = `Connexion réussie, bienvenue ${user.pseudo} !`;
-  } catch (e) {
+  } catch (e: any) {
     console.error(e);
-    if ((e as Error).message === "Utilisateur non trouvé") {
+    if (e.name === "UserNotFoundError") {
       statusMessage.value = "Aucun utilisateur trouvé avec cette adresse mail.";
-    } else if ((e as Error).message === "Mot de passe incorrect") {
+    } else if (e.name === "IncorrectPasswordError") {
       statusMessage.value = "Mot de passe incorrect.";
     } else {
       statusMessage.value = 'Erreur lors de la connexion, veuillez vérifier vos informations.';

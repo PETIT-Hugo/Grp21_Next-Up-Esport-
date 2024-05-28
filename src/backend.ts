@@ -4,6 +4,9 @@ import { type TypedPocketBase } from './pocketbase-types.js'
 export const pb = new PocketBase('https://next-up-esport.petit-hugommi1.fr:443')
 
 
+
+// Page inscription
+
 export async function signUp(newUser: any) {
   try {
     const record = await pb.collection('utilisateur').create(newUser)
@@ -27,16 +30,33 @@ export async function checkIfUserExists(field: string, value: string): Promise<b
   }
 }
 
+
+// Page connexion
+
+class UserNotFoundError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'UserNotFoundError'
+  }
+}
+
+class IncorrectPasswordError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'IncorrectPasswordError'
+  }
+}
+
 export async function signIn(mail: string, mdp: string) {
   try {
     const user = await pb.collection('utilisateur').getFirstListItem(`mail="${mail}"`)
 
     if (!user) {
-      throw new Error('Utilisateur non trouvé')
+      throw new UserNotFoundError('Utilisateur non trouvé')
     }
 
     if (user.mdp !== mdp) {
-      throw new Error('Mot de passe incorrect')
+      throw new IncorrectPasswordError('Mot de passe incorrect')
     }
 
     return user
