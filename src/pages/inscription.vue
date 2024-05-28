@@ -122,6 +122,8 @@ const handleSignUp = async () => {
     <label>Confirmer le mot de passe</label>
     <input type="password" minlength="1" placeholder="strongMDP123*" class="ml-5" v-model="confirmMdp">
   </p>
+
+  
     <p>
     <input type="checkbox" v-model="termes">
     <label>J’accepte les Conditions générales d’utilisation et la Politique de confidentialité.*</label>
