@@ -4,21 +4,22 @@ import { signIn } from '@/backend'
 
 const mail = ref('')
 const mdp = ref('')
+const identifier = ref('')
 const statusMessage = ref('Veuillez vous connecter')
 
 const handleSignIn = async () => {
   try {
-    if (!mail.value || !mdp.value) {
+    if (!identifier.value || !mdp.value) {
       statusMessage.value = 'Veuillez remplir tous les champs.';
       return;
     }
 
-    const user = await signIn(mail.value, mdp.value);
+    const user = await signIn(identifier.value, mdp.value);
     statusMessage.value = `Connexion réussie, bienvenue ${user.pseudo} !`;
   } catch (e: any) {
     console.error(e);
     if (e.name === "UserNotFoundError") {
-      statusMessage.value = "Aucun utilisateur trouvé avec cette adresse mail.";
+      statusMessage.value = "Aucun utilisateur trouvé avec cette adresse mail ou ce pseudo.";
     } else if (e.name === "IncorrectPasswordError") {
       statusMessage.value = "Mot de passe incorrect.";
     } else {
@@ -34,7 +35,7 @@ const handleSignIn = async () => {
     <h1>Connexion</h1>
     <p>
       <label>Pseudo ou Courriel</label>
-      <input type="email" placeholder="exemple@abc.fr" class="ml-5" v-model="mail">
+      <input type="email" placeholder="exemple@abc.fr" class="ml-5" v-model="identifier">
     </p>
     <p>
       <label>Mot de passe</label>
