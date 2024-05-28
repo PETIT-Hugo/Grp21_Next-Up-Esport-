@@ -9,6 +9,10 @@ const mdp = ref('')
 const confirmMdp = ref('')
 const statusMessage = ref('Inscrivez-vous dès maintenant !')
 
+const termes = ref(false)
+const majeur = ref(false)
+const newsletter = ref(false)
+
 const validatePseudoRiot = (pseudo: string): boolean => {
   const riotRegex = /^[a-zA-Z0-9-]+#[A-Z0-9]{3,5}$/
   return riotRegex.test(pseudo)
@@ -69,6 +73,16 @@ const handleSignUp = async () => {
       statusMessage.value = 'Cette adresse mail est déjà utilisée.'
       return
     }
+
+        if (!termes.value) {
+      statusMessage.value = 'Vous devez accepter les conditions d\'utilisation.'
+      return
+    }
+
+    if (!majeur.value) {
+      statusMessage.value = 'Vous devez avoir plus de 18 ans pour utiliser NextUp Esport.'
+      return
+    }
     
     const newUtil = {
       id_riot: pseudoRiot.value,
@@ -90,24 +104,38 @@ const handleSignUp = async () => {
   <h1>Inscription</h1>
   <p>
     <label>Pseudo Riot</label>
-    <input type="text" placeholder="exemple#EUW" class="ml-5" v-model="pseudoRiot">
+    <input type="text" placeholder="exemple#EUW*" class="ml-5" v-model="pseudoRiot">
   </p>
   <p>
     <label>Adresse Mail</label>
-    <input type="email" placeholder="exemple@abc.fr" class="ml-5" v-model="mail">
+    <input type="email" placeholder="exemple@abc.fr*" class="ml-5" v-model="mail">
   </p>
   <p>
     <label>Pseudo Next Up</label>
-    <input type="text" placeholder="Votre pseudo" class="ml-5" v-model="pseudoNextUp">
+    <input type="text" placeholder="Votre pseudo*" class="ml-5" v-model="pseudoNextUp">
   </p>
   <p>
     <label>Mot de passe</label>
-    <input type="password" minlength="1" placeholder="strongMDP123" class="ml-5" v-model="mdp">
+    <input type="password" minlength="1" placeholder="strongMDP123*" class="ml-5" v-model="mdp">
   </p>
   <p>
     <label>Confirmer le mot de passe</label>
-    <input type="password" minlength="1" placeholder="strongMDP123" class="ml-5" v-model="confirmMdp">
+    <input type="password" minlength="1" placeholder="strongMDP123*" class="ml-5" v-model="confirmMdp">
   </p>
+    <p>
+    <input type="checkbox" v-model="termes">
+    <label>J’accepte les Conditions générales d’utilisation et la Politique de confidentialité.*</label>
+  </p>
+  <p>
+    <input type="checkbox" v-model="majeur">
+    <label>Je certifie être âgé d’au moins 18 ans .*</label>
+  </p>
+  <p>
+    <input type="checkbox" v-model="newsletter">
+    <label>Je souhaite recevoir des e-mail promotionnels sur les actualités de NextUp E-Sport.</label>
+  </p>
+
+
   <button @click="handleSignUp" class="bg-slate-400">S'inscrire</button>
   <label id="status" v-text="statusMessage"></label>
 </template>
