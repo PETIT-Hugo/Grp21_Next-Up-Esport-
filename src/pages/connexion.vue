@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { signIn } from '@/backend'
+import { ref } from 'vue';
+import { signIn, pb } from '@/backend';
 
-const mail = ref('')
-const mdp = ref('')
-const identifier = ref('')
-const statusMessage = ref('Veuillez vous connecter')
+const identifier = ref('');
+const mdp = ref('');
+const statusMessage = ref('Veuillez vous connecter');
 
 const handleSignIn = async () => {
   try {
@@ -27,15 +26,14 @@ const handleSignIn = async () => {
     }
   }
 }
-
 </script>
 
 <template>
-      <div>
-    <h1>Connexion</h1>
+  <div>
+    <h1>Connexion test</h1>
     <p>
       <label>Pseudo ou Courriel</label>
-      <input type="email" placeholder="exemple@abc.fr" class="ml-5" v-model="identifier">
+      <input type="text" placeholder="exemple@abc.fr" class="ml-5" v-model="identifier">
     </p>
     <p>
       <label>Mot de passe</label>
@@ -44,5 +42,4 @@ const handleSignIn = async () => {
     <button @click="handleSignIn" class="bg-slate-400">Se connecter</button>
     <label id="status" v-text="statusMessage"></label>
   </div>
-    
 </template>

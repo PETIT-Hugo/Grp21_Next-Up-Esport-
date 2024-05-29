@@ -38,9 +38,9 @@ import TwitterLogo from './icons/TwitterLogo.vue';
         <div class="w-2/8">
           <h3 class="text-white mb-1 uppercase-title">MENTIONS LÉGALES</h3>
           <ul class="space-y-2">
-            <li><RouterLink to="/conditions_ventes" class="text-white hover:text-gray-300 elements-title">Conditions générales de ventes</RouterLink></li>
-            <li><RouterLink to="/conditions_utilisation" class="text-white hover:text-gray-300 elements-title">Conditions générales d’utilisation</RouterLink></li>
-            <li><RouterLink to="/politique_confidentialite" class="text-white hover:text-gray-300 elements-title">Politique de confidentialité</RouterLink></li>
+            <li><RouterLink to="/conditionsVentes" class="text-white hover:text-gray-300 elements-title">Conditions générales de ventes</RouterLink></li>
+            <li><RouterLink to="/conditionsUtilisation" class="text-white hover:text-gray-300 elements-title">Conditions générales d’utilisation</RouterLink></li>
+            <li><RouterLink to="/politiqueConfidentialite" class="text-white hover:text-gray-300 elements-title">Politique de confidentialité</RouterLink></li>
             <li><RouterLink to="#" class="text-white hover:text-gray-300 elements-title">Cookies</RouterLink></li>
           </ul>
         </div>
