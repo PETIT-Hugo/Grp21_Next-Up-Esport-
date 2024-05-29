@@ -69,7 +69,7 @@ li {
         <h2 class="mt-6 mb-4 text-[28px] text-white mx-24 font-roboto">Vous pouvez modifier votre consentement vis-à-vis de l’utilisation des cookies sur le site via cette page. En décochant la case suivante, vous êtes conscient que cela peut bloquer l’accès à certaines fonctionnalités lors de votre navigation sur le site. Vous vous tenez donc pleinement responsable de toute modificaiton négative de votre expérience sur le site.</h2>
 
         <div class="flex items-start mx-24"> <!-- Espace pour la case a cocher -->
-            <input type="checkbox" id="accept-cookies" class="appearance-none h-6 w-8 border-2 border-gray-300 rounded-md checked:bg-[#36C1ED] checked:border-transparent focus:outline-none focus:ring-2 focus:ring-white">
+            <input type="checkbox" id="accept-cookies" class="mt-3 appearance-none h-6 w-8 border-2 border-gray-300 rounded-md checked:bg-[#36C1ED] checked:border-transparent focus:outline-none focus:ring-2 focus:ring-white">
             <label for="accept-cookies" class="text-white font-roboto ml-2">
                 J’accepte l’utilisation de cookies non-essentiels lors de ma navigation sur la site. Si je ne coche pas la case, je suis conscient que certaines fonctionnalités du site puissent et être bloquées, et que, en conséquence, mon expérience sur le site puisse être altérée négativement.
             </label>
