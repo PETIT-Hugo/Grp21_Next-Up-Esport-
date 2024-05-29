@@ -35,12 +35,14 @@ const toggleMenu = () => {
     font-family: 'Orbitron', sans-serif;
     font-size:20px;
     color: #FFFFFF;
+    font-weight: bold;
 }
 
 .menu-element-upcoins {
     font-family: 'Orbitron', sans-serif;
     font-size:20px;
     color: #36C1ED;
+    font-weight: bold;
 }
 </style>
 
