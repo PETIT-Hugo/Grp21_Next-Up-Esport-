@@ -41,7 +41,7 @@ import TwitterLogo from './icons/TwitterLogo.vue';
             <li><RouterLink to="/conditionsVentes" class="text-white hover:text-gray-300 elements-title">Conditions générales de ventes</RouterLink></li>
             <li><RouterLink to="/conditionsUtilisation" class="text-white hover:text-gray-300 elements-title">Conditions générales d’utilisation</RouterLink></li>
             <li><RouterLink to="/politiqueConfidentialite" class="text-white hover:text-gray-300 elements-title">Politique de confidentialité</RouterLink></li>
-            <li><RouterLink to="#" class="text-white hover:text-gray-300 elements-title">Cookies</RouterLink></li>
+            <li><RouterLink to="/Cookies" class="text-white hover:text-gray-300 elements-title">Cookies</RouterLink></li>
           </ul>
         </div>
         <!-- Nous Contacter -->
