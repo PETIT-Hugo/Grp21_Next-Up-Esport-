@@ -19,7 +19,7 @@ onErrorCaptured((err, instance, info) => {
 
 <template>
   
-  <HeaderSite />
+  <Header />
  <main>
       <nav>
       <ul>

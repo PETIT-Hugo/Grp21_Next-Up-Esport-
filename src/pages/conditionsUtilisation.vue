@@ -177,7 +177,7 @@ li {
     <p>Tout différend lié à l’interprétation de ces CGU sera soumis aux tribunaux français compétents.</p>
 
 
-    <div class="border border-white mt-16"></div>
+    
 
 
 </div>
