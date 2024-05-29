@@ -1,7 +1,7 @@
 import PocketBase from 'pocketbase'
 import { type TypedPocketBase } from './pocketbase-types.js'
 
-export const pb = new PocketBase('https://next-up-esport.petit-hugommi1.fr:443')
+export const pb = new PocketBase('https://nextupesport.petit-hugommi1.fr:443')
 
 
 
