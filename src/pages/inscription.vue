@@ -100,44 +100,99 @@ const handleSignUp = async () => {
 }
 </script>
 
+<style>
+.custom-bg {
+  background-color: #1C1A1A;
+}
+
+.titre-element-bleu {
+    font-family: 'Mulish', sans-serif;
+    font-size:40px;
+    color: #36C1ED;
+    font-weight: 800;
+    letter-spacing: -2.5px; /* Espacement des lettres de -4% */
+
+}
+
+.titre-element-blanc {
+    font-family: 'Mulish', sans-serif;
+    font-size:40px;
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: -2.5px; /* Espacement des lettres de -4% */
+
+}
+
+.sous-titre-element {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight:200;
+}
+
+.margin {
+    margin-left: 550px;
+}
+
+.largeur {
+    width: 450px;
+}
+
+</style>
+
 <template>
-  <h1>Inscription</h1>
-  <p>
-    <label>Pseudo Riot</label>
-    <input type="text" placeholder="exemple#EUW*" class="ml-5" v-model="pseudoRiot">
-  </p>
-  <p>
-    <label>Adresse Mail</label>
-    <input type="email" placeholder="exemple@abc.fr*" class="ml-5" v-model="mail">
-  </p>
-  <p>
-    <label>Pseudo Next Up</label>
-    <input type="text" placeholder="Votre pseudo*" class="ml-5" v-model="pseudoNextUp">
-  </p>
-  <p>
-    <label>Mot de passe</label>
-    <input type="password" minlength="1" placeholder="strongMDP123*" class="ml-5" v-model="mdp">
-  </p>
-  <p>
-    <label>Confirmer le mot de passe</label>
-    <input type="password" minlength="1" placeholder="strongMDP123*" class="ml-5" v-model="confirmMdp">
-  </p>
+  <div class="custom-bg">
+        <div class="mx-4 justify-center flex">
+          <h1 class="titre-element-bleu">Inscrivez-vous<span class="titre-element-blanc"> sur NextUp E-Sport</span></h1>
+          </div>
+          <div class="justify-center mx-4 flex">
+            <p class="sous-titre-element">L’aventure commence ici. Indiquer votre pseudonyme Riot Games (trouvable sur le site de Riot Games) et créez un compte. </p>
+          </div>
+          
+    
+    <div class="custom-bg  flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <p>
+        <label class="text-[#7C7C7C]">Pseudo Riot</label>
+        <input type="text" id="pseudoRiot" placeholder="exemple#EUW*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="pseudoRiot">
+      </p>
+      <p>
+        <label class="text-[#7C7C7C]">Adresse Mail</label>
+        <input type="email" placeholder="exemple@abc.fr*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="pseudoRiot">
+      </p>
+      <p>
+        <label class="text-[#7C7C7C]">Pseudo Next Up</label>
+        <input type="text" placeholder="Votre pseudo*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="pseudoNextUp">
+      </p>
+      <p>
+        <label class="text-[#7C7C7C]">Mot de passe</label>
+        <input type="password" minlength="1" placeholder="strongMDP123*"  class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"  v-model="mdp">
+      </p>
+      <p>
+        <label class="text-[#7C7C7C]">Confirmer le mot de passe</label>
+        <input type="password" minlength="1" placeholder="strongMDP123*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="confirmMdp">
+      </p>
+    </div>
+    <div class="flex flex-col margin justify-center">
 
-  
-    <p>
-    <input type="checkbox" v-model="termes">
-    <label>J’accepte les Conditions générales d’utilisation et la Politique de confidentialité.*</label>
-  </p>
-  <p>
-    <input type="checkbox" v-model="majeur">
-    <label>Je certifie être âgé d’au moins 18 ans .*</label>
-  </p>
-  <p>
-    <input type="checkbox" v-model="newsletter">
-    <label>Je souhaite recevoir des e-mail promotionnels sur les actualités de NextUp E-Sport.</label>
-  </p>
+    <p class="flex items-center mb-3">
+        <input type="checkbox" id="accept-cookies" class="mr-2 appearance-none h-6 w-6 border-2 border-gray-300 rounded-md checked:bg-[#36C1ED] checked:border-transparent focus:outline-none focus:ring-2 focus:ring-white" v-model="termes">
+        <label for="accept-cookies" class="text-white font-roboto largeur">J’accepte les Conditions générales d’utilisation et la Politique de confidentialité.*</label>
+    </p>
+    <p class="flex items-center mb-3">
+        <input type="checkbox" id="majeur" class="mr-2 appearance-none h-6 w-6 border-2 border-gray-300 rounded-md checked:bg-[#36C1ED] checked:border-transparent focus:outline-none focus:ring-2 focus:ring-white" v-model="majeur">
+        <label for="majeur" class="text-white font-roboto largeur">Je certifie être âgé d’au moins 18 ans.*</label>
+    </p>
+    <p class="flex items-center mb-3">
+        <input type="checkbox" id="newsletter" class="mr-2 appearance-none h-6 w-6 border-2 border-gray-300 rounded-md checked:bg-[#36C1ED] checked:border-transparent focus:outline-none focus:ring-2 focus:ring-white" v-model="newsletter">
+        <label for="newsletter" class="text-white font-roboto largeur">Je souhaite recevoir des e-mails promotionnels sur les actualités de NextUp E-Sport.</label>
+    </p>
+</div>
 
 
-  <button @click="handleSignUp" class="bg-slate-400">S'inscrire</button>
-  <label id="status" v-text="statusMessage"></label>
+      
+
+
+    <button @click="handleSignUp" class="bg-slate-400">S'inscrire</button>
+    <label id="status" v-text="statusMessage"></label>
+  </div>
 </template>

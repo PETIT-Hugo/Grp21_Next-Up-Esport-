@@ -74,6 +74,6 @@ li {
                 J’accepte l’utilisation de cookies non-essentiels lors de ma navigation sur la site. Si je ne coche pas la case, je suis conscient que certaines fonctionnalités du site puissent et être bloquées, et que, en conséquence, mon expérience sur le site puisse être altérée négativement.
             </label>
         </div>
-        <div class="border border-white mt-16"></div>
+        
     </div>
 </template>

@@ -193,7 +193,7 @@ Le droit de demander la suppression des données personnelles que nous possédon
     <h2>Mise à jour des conditions de traitement de vos données</h2>
 
     <p>Toutes les conditions citées ci-dessus peuvent-être amenées à être modifiées, nous vous invitons donc à les consulter régulièrement. De plus, votre consentement peut-être requis à la suite de certaines modifications. Dans ce cadre, nous nous réservons la liberté de vous contacter par courriel afin de vous tenir informé(e).</p>
-    <div class="border border-white mt-16"></div>
+    
 </div>
 
 </template>

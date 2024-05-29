@@ -30,6 +30,7 @@ import TwitterLogo from './icons/TwitterLogo.vue';
 
 <template>
   <footer class="custom-bg py-6 container">
+    <div class="border border-white mt-16 mb-16"></div>
     <div class="mx-auto px-12">
     <!-- Elements de la partie gauche de la pages -->
       <!-- Footer Content -->
@@ -62,7 +63,7 @@ import TwitterLogo from './icons/TwitterLogo.vue';
         <div class="w-2/8">
           <h3 class="text-white mb-1 uppercase-title">DÉCOUVRIR</h3>
           <ul class="space-y-2">
-            <li><RouterLink to="#" class="text-white hover:text-gray-300 elements-title">À propos</RouterLink></li>
+            <li><RouterLink to="/apropos" class="text-white hover:text-gray-300 elements-title">À propos</RouterLink></li>
           </ul>
         </div>
     </div>
