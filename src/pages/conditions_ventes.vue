@@ -51,6 +51,7 @@ h2 {
 li {
     color: #ffffff;
     font-family:'Roboto', sans-serif;
+    font-weight:300;
 }
 </style>
 
@@ -124,6 +125,9 @@ li {
     <p>Les CGV sont régies et interprétées conformément au droit français.</p>
     <p>En cas de litige, la société et le consommateur s’engagent à rechercher une solution amiable avant toute action judiciaire.</p>
     <p>Tout différend lié à l’interprétation de ces CGV sera soumis aux tribunaux français compétents.</p>
-    
+
+    <div class="border border-white mt-16"></div>
+
     </div>
+
 </template>
