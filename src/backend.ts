@@ -35,53 +35,51 @@ export async function checkIfUserExists(field: string, value: string): Promise<b
 
 class UserNotFoundError extends Error {
   constructor(message: string) {
-    super(message);
-    this.name = 'UserNotFoundError';
+    super(message)
+    this.name = 'UserNotFoundError'
   }
 }
 
 class IncorrectPasswordError extends Error {
   constructor(message: string) {
-    super(message);
-    this.name = 'IncorrectPasswordError';
+    super(message)
+    this.name = 'IncorrectPasswordError'
   }
 }
 
 export async function signIn(identifier: string, mdp: string) {
   try {
-    let user;
+    let user
 
-    // Try to find user by email
     try {
-      user = await pb.collection('utilisateur').getFirstListItem(`mail="${identifier}"`);
+      user = await pb.collection('utilisateur').getFirstListItem(`mail="${identifier}"`)
     } catch (error: any) {
       if (error.status === 404) {
-        // Try to find user by pseudo if email not found
         try {
-          user = await pb.collection('utilisateur').getFirstListItem(`pseudo="${identifier}"`);
+          user = await pb.collection('utilisateur').getFirstListItem(`pseudo="${identifier}"`)
         } catch (error: any) {
           if (error.status === 404) {
-            throw new UserNotFoundError('Utilisateur non trouvé');
+            throw new UserNotFoundError('Utilisateur non trouvé')
           } else {
-            throw error;
+            throw error
           }
         }
       } else {
-        throw error;
+        throw error
       }
     }
 
     if (!user) {
-      throw new UserNotFoundError('Utilisateur non trouvé');
+      throw new UserNotFoundError('Utilisateur non trouvé')
     }
 
     if (user.mdp !== mdp) {
-      throw new IncorrectPasswordError('Mot de passe incorrect');
+      throw new IncorrectPasswordError('Mot de passe incorrect')
     }
 
-    return user;
+    return user
   } catch (error) {
-    console.error('Erreur lors de la connexion:', error);
-    throw error;
+    console.error('Erreur lors de la connexion:', error)
+    throw error
   }
 }
