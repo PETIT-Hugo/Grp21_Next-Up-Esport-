@@ -32,6 +32,12 @@ onErrorCaptured((err, instance, info) => {
         <li>
           <RouterLink to="/connexion" class="text-red-500 underline"> Connexion </RouterLink>
         </li>
+        <li>
+          <RouterLink to="/creationTournoi" class="text-red-500 underline">Creation Tournoi </RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/api" class="text-red-500 underline"> Tests API </RouterLink>
+        </li>
       </ul>
     </nav>
     <RouterView v-slot="{ Component }">

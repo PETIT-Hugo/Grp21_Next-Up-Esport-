@@ -1,11 +1,19 @@
-import { reactive } from 'vue'
+import { reactive, computed, watch } from 'vue'
 
 interface AuthState {
   userId: string | null
 }
 
 const state = reactive<AuthState>({
-  userId: null
+  userId: localStorage.getItem('userId')
+})
+
+watch(() => state.userId, (newUserId) => {
+  if (newUserId) {
+    localStorage.setItem('userId', newUserId)
+  } else {
+    localStorage.removeItem('userId')
+  }
 })
 
 export const useAuthStore = () => {
@@ -13,7 +21,7 @@ export const useAuthStore = () => {
     state.userId = userId
   }
 
-  const getCurrentUserId = () => state.userId
+  const getCurrentUserId = computed(() => state.userId)
 
   return {
     setCurrentUserId,

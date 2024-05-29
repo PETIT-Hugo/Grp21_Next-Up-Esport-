@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { signIn, pb } from '@/backend';
+import { signIn } from '@/backend';
+import { useAuthStore } from '@/store/auth';
 
 const identifier = ref('');
 const mdp = ref('');
 const statusMessage = ref('Veuillez vous connecter');
+const authStore = useAuthStore();
 
 const handleSignIn = async () => {
   try {
@@ -15,6 +17,7 @@ const handleSignIn = async () => {
 
     const user = await signIn(identifier.value, mdp.value);
     statusMessage.value = `Connexion réussie, bienvenue ${user.pseudo} !`;
+    authStore.setCurrentUserId(user.id);
   } catch (e: any) {
     console.error(e);
     if (e.name === "UserNotFoundError") {
@@ -30,7 +33,7 @@ const handleSignIn = async () => {
 
 <template>
   <div>
-    <h1>Connexion test</h1>
+    <h1>Connexion</h1>
     <p>
       <label>Pseudo ou Courriel</label>
       <input type="text" placeholder="exemple@abc.fr" class="ml-5" v-model="identifier">

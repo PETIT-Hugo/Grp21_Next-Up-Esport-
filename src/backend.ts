@@ -83,3 +83,37 @@ export async function signIn(identifier: string, mdp: string) {
     throw error
   }
 }
+
+// Creation de tournois
+
+export async function createTournament(tournamentData: {
+  name: string
+  userId: string
+  jeu: string
+  nb_joueurs: number
+  nb_manches: number
+  date: string
+  type: string
+  manche_actuelle: number
+  officiel: boolean
+  description: string
+}) {
+  try {
+    const newTournament = await pb.collection('tournoi').create({
+      nom: tournamentData.name,
+      jeu: tournamentData.jeu,
+      nb_joueurs: tournamentData.nb_joueurs,
+      nb_manches: tournamentData.nb_manches,
+      date: tournamentData.date,
+      type: tournamentData.type,
+      manche_actuelle: tournamentData.manche_actuelle,
+      officiel: tournamentData.officiel,
+      description: tournamentData.description,
+      id_createur: tournamentData.userId 
+    })
+    return newTournament
+  } catch (error) {
+    console.error('Erreur lors de la création du tournoi:', error)
+    throw error
+  }
+}
