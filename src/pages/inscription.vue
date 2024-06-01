@@ -153,11 +153,11 @@ const handleSignUp = async () => {
     <div class="custom-bg  flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <p>
         <label class="text-[#7C7C7C]">Pseudo Riot</label>
-        <input type="text" id="pseudoRiot" placeholder="exemple#EUW*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="pseudoRiot">
+        <input type="text" id="pseudoRiot" placeholder="exemple#EUW*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="pseudoRiot">
       </p>
       <p>
         <label class="text-[#7C7C7C]">Adresse Mail</label>
-        <input type="email" placeholder="exemple@abc.fr*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="pseudoRiot">
+        <input type="email" placeholder="exemple@abc.fr*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="mail">
       </p>
       <p>
         <label class="text-[#7C7C7C]">Pseudo Next Up</label>

@@ -9,8 +9,6 @@ const nbJoueurs = ref(0);
 const nbManches = ref(0);
 const date = ref('');
 const type = ref('public');
-const mancheActuelle = ref(0);
-const officiel = ref(false);
 const description = ref('');
 const statusMessage = ref('');
 const authStore = useAuthStore();
@@ -30,8 +28,8 @@ const createTournament = async () => {
       nb_manches: nbManches.value,
       date: date.value,
       type: type.value,
-      manche_actuelle: mancheActuelle.value,
-      officiel: officiel.value,
+      manche_actuelle: 0,
+      officiel: false,
       description: description.value,
       userId: userId
     };
@@ -79,14 +77,6 @@ const createTournament = async () => {
         <option value="public">Public</option>
         <option value="prive">Privé</option>
       </select>
-    </p>
-    <p>
-      <label>Manche actuelle</label>
-      <input type="number" v-model="mancheActuelle">
-    </p>
-    <p>
-      <label>Officiel</label>
-      <input type="checkbox" v-model="officiel">
     </p>
     <p>
       <label>Description</label>
