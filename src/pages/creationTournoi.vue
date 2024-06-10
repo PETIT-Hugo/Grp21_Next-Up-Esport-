@@ -4,11 +4,11 @@ import { useAuthStore } from '@/store/auth';
 import { createTournament as createTournamentApi } from '@/backend';
 
 const tournamentName = ref('');
-const jeu = ref('valorant');
+const jeu = ref('Valorant');
 const nbJoueurs = ref(0);
 const nbManches = ref(0);
 const date = ref('');
-const type = ref('public');
+const type = ref('Public');
 const description = ref('');
 const statusMessage = ref('');
 const authStore = useAuthStore();
@@ -18,6 +18,12 @@ const createTournament = async () => {
     const userId = authStore.getCurrentUserId.value;
     if (!userId) {
       statusMessage.value = 'Vous devez être connecté pour créer un tournoi.';
+      return;
+    }
+
+    if (!tournamentName.value || !jeu.value || !nbJoueurs.value || !nbManches.value || !date.value || !type.value || !description.value) {
+      statusMessage.value = 'Tous les champs doivent être remplis.';
+      console.error('Erreur: Tous les champs doivent être remplis.');
       return;
     }
 
@@ -31,8 +37,10 @@ const createTournament = async () => {
       manche_actuelle: 0,
       officiel: false,
       description: description.value,
-      userId: userId
+      userId: userId,
     };
+
+    console.log('Données du tournoi à envoyer:', tournamentData);
 
     await createTournamentApi(tournamentData);
 
@@ -42,7 +50,7 @@ const createTournament = async () => {
     statusMessage.value = 'Erreur lors de la création du tournoi.';
     console.error('Erreur lors de la création du tournoi:', error);
   }
-}
+};
 </script>
 
 <template>
@@ -55,8 +63,8 @@ const createTournament = async () => {
     <p>
       <label>Jeu</label>
       <select v-model="jeu">
-        <option value="valorant">Valorant</option>
-        <option value="lol">League of Legends</option>
+        <option value="Valorant">Valorant</option>
+        <option value="League of Legends">League of Legends</option>
       </select>
     </p>
     <p>
@@ -74,7 +82,7 @@ const createTournament = async () => {
     <p>
       <label>Type</label>
       <select v-model="type">
-        <option value="public">Public</option>
+        <option value="Public">Public</option>
         <option value="prive">Privé</option>
       </select>
     </p>

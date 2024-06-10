@@ -12,7 +12,7 @@ const state = reactive<AuthState>({
 watch(
   () => state.userId,
   (newUserId) => {
-    console.log('UserId changed:', newUserId) // Ajouter cette ligne pour vérifier les changements
+    console.log('UserId changed:', newUserId)
     if (newUserId) {
       localStorage.setItem('userId', newUserId)
     } else {
