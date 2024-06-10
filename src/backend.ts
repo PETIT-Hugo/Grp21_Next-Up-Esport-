@@ -3,20 +3,18 @@ import { type TypedPocketBase } from './pocketbase-types.js'
 
 export const pb = new PocketBase('https://nextupesport.petit-hugommi1.fr:443')
 
-
 // Page d'accueil
 export async function getAllTournois() {
   try {
     const records = await pb.collection('tournoi').getFullList()
     return records
-      } catch (error) {
-    console.error("Erreur lors de la récupération des tournois", error)
+  } catch (error) {
+    console.error('Erreur lors de la récupération des tournois', error)
     throw error
   }
 }
 
 // Page inscription
-
 export async function signUp(newUser: any) {
   try {
     const record = await pb.collection('utilisateur').create(newUser)
@@ -40,9 +38,7 @@ export async function checkIfUserExists(field: string, value: string): Promise<b
   }
 }
 
-
 // Page connexion
-
 class UserNotFoundError extends Error {
   constructor(message: string) {
     super(message)
@@ -95,7 +91,6 @@ export async function signIn(identifier: string, mdp: string) {
 }
 
 // Creation de tournois
-
 export async function createTournament(tournamentData: {
   name: string
   userId: string
@@ -111,7 +106,6 @@ export async function createTournament(tournamentData: {
   try {
     console.log('Données du tournoi à envoyer:', tournamentData)
 
-    // Vérifier que tous les champs requis sont présents
     if (
       !tournamentData.name ||
       !tournamentData.userId ||
@@ -141,6 +135,18 @@ export async function createTournament(tournamentData: {
     })
 
     console.log('Tournoi créé avec succès:', newTournament)
+
+    // Création des terrains
+    const nbTerrains = Math.ceil(tournamentData.nb_joueurs / 2)
+    for (let i = 1; i <= nbTerrains; i++) {
+      await pb.collection('terrain').create({
+        id_match_riot: null, 
+        numero: i,
+        id_tournoi: newTournament.id,
+        id_participant: null 
+      })
+    }
+
     return newTournament
   } catch (error) {
     console.error('Erreur lors de la création du tournoi:', error)
