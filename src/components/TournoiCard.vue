@@ -25,33 +25,6 @@ const getBannerImage = (game: string): string => {
   return '';
 };
 </script>
-
-<template>
-  <div class="card-tournament bg-gray-900 text-white p-4 rounded-lg shadow-md">
-    <img :src="getBannerImage(props.jeu)" alt="Game Banner" class="custom-image w-full h-32 object-cover rounded-t-lg" />
-    <div class="p-4">
-      <p class="text-lg font-bold mb-2">{{ props.nom }}</p>
-      <div class="flex items-center my-2">
-        <IconJeuTournoi class="mr-2" />
-        <p>{{ props.jeu }}</p>
-      </div>
-      <div class="flex items-center my-2">
-        <IconTypeTournoi class="mr-2" />
-        <p>{{ props.type }}</p>
-      </div>
-      <div class="flex items-center my-2">
-        <IconJoueurTournoi class="mr-2" />
-        <p>{{ props.nb_joueurs }} joueurs</p>
-      </div>
-      <div class="flex items-center my-2">
-        <IconDateTournoi class="mr-2" />
-        <p>{{ formatDate(props.date) }}</p>
-      </div>
-      <button class="w-full bg-blue-500 text-white py-2 mt-4 rounded-lg hover:bg-blue-600">Aperçu</button>
-    </div>
-  </div>
-</template>
-
 <style scoped>
 .card-tournament {
   background-color: #292929;
@@ -108,3 +81,31 @@ const getBannerImage = (game: string): string => {
   background-color: #3182ce;
 }
 </style>
+
+<template>
+  <div class="card-tournament bg-gray-900 text-white p-4 rounded-lg shadow-md">
+    <img :src="getBannerImage(props.jeu)" alt="Game Banner" class="custom-image w-full h-32 object-cover rounded-t-lg" />
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">{{ props.nom }}</p>
+      <div class="flex items-center my-2">
+        <IconJeuTournoi class="mr-2" />
+        <p>{{ props.jeu }}</p>
+      </div>
+      <div class="flex items-center my-2">
+        <IconTypeTournoi class="mr-2" />
+        <p>{{ props.type }}</p>
+      </div>
+      <div class="flex items-center my-2">
+        <IconJoueurTournoi class="mr-2" />
+        <p>{{ props.nb_joueurs }} joueurs</p>
+      </div>
+      <div class="flex items-center my-2">
+        <IconDateTournoi class="mr-2" />
+        <p>{{ formatDate(props.date) }}</p>
+      </div>
+      <button class="w-full bg-blue-500 text-white py-2 mt-4 rounded-lg hover:bg-blue-600">Aperçu</button>
+    </div>
+  </div>
+</template>
+
+
