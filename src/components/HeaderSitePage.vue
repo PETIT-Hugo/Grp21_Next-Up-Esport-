@@ -5,7 +5,7 @@ import LogoNextUp from './icons/LogoNextUp.vue';
 import UpCoin from './icons/UpCoin.vue';
 import PhotoDeProfil from './icons/PhotoDeProfil.vue';
 import FlecheBleu from './icons/FlecheBleu.vue';
-import { logout } from '@/services/authService'; // Importer le service d'authentification
+import { logout } from '@/services/authService'; 
 
 const isMenuOpen = ref(false);
 const isDropdownOpen = ref(false);
@@ -20,7 +20,7 @@ const toggleDropdown = () => {
 
 const handleLogout = () => {
   logout();
-  console.log('User logged out'); // Vérifiez que l'utilisateur est déconnecté
+  console.log('User logged out'); 
 };
 </script>
 

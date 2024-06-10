@@ -56,6 +56,7 @@ export type JoueurRecord = {
 	id_utilisateur?: RecordIdString
 	num_terrain?: number
 	victoires?: number
+	id_tournoi?: RecordIdString
 }
 
 export type TerrainRecord = {
