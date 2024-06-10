@@ -165,19 +165,73 @@ export async function createTournament(tournamentData: {
 // Composants terrain
 
 
+
+
+export async function registerPlayer(tournoiId: string, userId: string) {
+  try {
+    const terrains = await getTerrainsByTournoiId(tournoiId);
+
+    let terrainLibre = null;
+    for (const terrain of terrains.sort((a, b) => a.numero - b.numero)) {
+      if ((terrain.participants || []).length < 2) {
+        terrainLibre = terrain;
+        break;
+      }
+    }
+
+    if (!terrainLibre) {
+      throw new Error('Pas de place libre dans le tournoi.');
+    }
+
+    const userRecord = await pb.collection('utilisateur').getOne(userId);
+    const pseudo = userRecord.pseudo;
+
+    const newPlayer = {
+      num_terrain: terrainLibre.numero,
+      victoires: 0,
+      createur: false, 
+      id_utilisateur: userId,
+      id_tournoi: tournoiId
+    };
+
+    const playerRecord = await pb.collection('joueur').create(newPlayer);
+
+    if (!terrainLibre.participants) {
+      terrainLibre.participants = [];
+    }
+    terrainLibre.participants.push(playerRecord.id);
+
+    await pb.collection('terrain').update(terrainLibre.id, {
+      participants: terrainLibre.participants
+    });
+
+    return playerRecord;
+  } catch (error) {
+    console.error("Erreur lors de l'inscription du joueur:", error);
+    throw error;
+  }
+}
+
 export async function getTerrainsByTournoiId(tournoiId: string) {
   try {
     const terrains = await pb.collection('terrain').getFullList({
       filter: `id_tournoi="${tournoiId}"`,
-      expand: 'id_participant' 
+      expand: 'participants'
     });
+
+    const joueurs = await pb.collection('joueur').getFullList();
+    const utilisateurs = await pb.collection('utilisateur').getFullList();
     
+    const utilisateurMap = Object.fromEntries(utilisateurs.map(user => [user.id, user.pseudo]));
+    const joueurMap = Object.fromEntries(joueurs.map(joueur => [joueur.id, joueur.id_utilisateur]));
+
     return terrains.map(terrain => ({
       ...terrain,
-      joueurs: [
-        terrain.expand?.id_participant?.[0] || { id: null, nom: 'Libre' },
-        terrain.expand?.id_participant?.[1] || { id: null, nom: 'Libre' }
-      ]
+      joueurs: (terrain.participants || []).map(participantId => {
+        const userId = joueurMap[participantId];
+        const pseudo = utilisateurMap[userId];
+        return userId ? { id: participantId, nom: pseudo } : { id: null, nom: 'Libre' };
+      })
     }));
   } catch (error) {
     console.error('Erreur lors de la récupération des terrains', error);

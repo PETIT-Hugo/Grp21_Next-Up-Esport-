@@ -11,9 +11,9 @@ const props = defineProps<{
   <div class="terrain-card">
     <h1 class="terrain-title">Terrain {{ props.numero }}</h1>
     <div class="terrain-content">
-      <div class="player">{{ props.joueurs?.[0]?.nom || 'Libre' }}</div>
+      <div class="player">{{ props.joueurs[0]?.nom || 'Libre' }}</div>
       <div class="vs">VS</div>
-      <div class="player">{{ props.joueurs?.[1]?.nom || 'Libre' }}</div>
+      <div class="player">{{ props.joueurs[1]?.nom || 'Libre' }}</div>
     </div>
   </div>
 </template>
