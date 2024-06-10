@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TournoiResponse } from '@/pocketbase-types';
+import type { TournoiResponse, TournoiRecord } from '@/pocketbase-types';
 import IconJeuTournoi from './icons/IconJeuTournoi.vue';
 import IconDateTournoi from './icons/IconDateTournoi.vue';
 import IconJoueurTournoi from './icons/IconJoueurTournoi.vue';
