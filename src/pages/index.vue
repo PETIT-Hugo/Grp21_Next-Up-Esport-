@@ -6,7 +6,7 @@ const tournoiListe = await getAllTournois()
 </script>
 
 <template>
-  <h1 class="text-2xl">Page d'Accueil</h1>
+  <h1 class="text-2xl">Page d'Accueil test</h1>
          <RouterLink
         v-for="unTournoi in tournoiListe"
         :key="unTournoi.id"

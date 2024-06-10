@@ -18,7 +18,7 @@ const handleSignIn = async () => {
     const user = await signIn(identifier.value, mdp.value);
     statusMessage.value = `Connexion réussie, bienvenue ${user.pseudo} !`;
     authStore.setCurrentUserId(user.id);
-    console.log('User ID set:', user.id); // Vérifiez que l'ID utilisateur est défini
+    console.log('User ID set:', user.id); 
   } catch (e: any) {
     console.error(e);
     if (e.name === "UserNotFoundError") {

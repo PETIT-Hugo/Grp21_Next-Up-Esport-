@@ -109,6 +109,24 @@ export async function createTournament(tournamentData: {
   description: string
 }) {
   try {
+    console.log('Données du tournoi à envoyer:', tournamentData)
+
+    // Vérifier que tous les champs requis sont présents
+    if (
+      !tournamentData.name ||
+      !tournamentData.userId ||
+      !tournamentData.jeu ||
+      !tournamentData.nb_joueurs ||
+      !tournamentData.nb_manches ||
+      !tournamentData.date ||
+      !tournamentData.type ||
+      typeof tournamentData.manche_actuelle !== 'number' ||
+      typeof tournamentData.officiel !== 'boolean' ||
+      !tournamentData.description
+    ) {
+      throw new Error('Un ou plusieurs champs requis sont manquants ou invalides.')
+    }
+
     const newTournament = await pb.collection('tournoi').create({
       nom: tournamentData.name,
       jeu: tournamentData.jeu,
@@ -119,8 +137,10 @@ export async function createTournament(tournamentData: {
       manche_actuelle: tournamentData.manche_actuelle,
       officiel: tournamentData.officiel,
       description: tournamentData.description,
-      id_createur: tournamentData.userId 
+      id_createur: tournamentData.userId
     })
+
+    console.log('Tournoi créé avec succès:', newTournament)
     return newTournament
   } catch (error) {
     console.error('Erreur lors de la création du tournoi:', error)
