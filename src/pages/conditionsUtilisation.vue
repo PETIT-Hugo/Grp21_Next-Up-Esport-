@@ -60,7 +60,7 @@ li {
         <div class="flex items-center justify-center">
             <div class="bg-white w-[160px] h-[4px]"></div>
                 <div class="mx-4">
-                    <h1 class="titre-element-bleu">CONDITIONS GÉNÉRALES<span class="titre-element-blanc"> D'UILISATION</span></h1>
+                    <h1 class="titre-element-bleu">CONDITIONS GÉNÉRALES<span class="titre-element-blanc"> D'UTILISATION</span></h1>
                 </div>
             <div class="bg-white w-[160px] h-[4px]"></div>
         </div>

@@ -54,7 +54,7 @@ const getBannerImage = (game: string): string => {
 
 <style scoped>
 .card-tournament {
-  background-color: #1a202c;
+  background-color: #292929;
   color: #cbd5e0;
   border-radius: 0.375rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
