@@ -5,7 +5,7 @@ import { createTournament as createTournamentApi } from '@/backend';
 
 const tournamentName = ref('');
 const jeu = ref('Valorant');
-const nbJoueurs = ref(0);
+const nbJoueurs = ref(6); // Par défaut à 6
 const nbManches = ref(0);
 const date = ref('');
 const type = ref('Public');
@@ -69,7 +69,12 @@ const createTournament = async () => {
     </p>
     <p>
       <label>Nombre de joueurs</label>
-      <input type="number" v-model="nbJoueurs">
+      <select v-model="nbJoueurs">
+        <option value="6">6</option>
+        <option value="8">8</option>
+        <option value="10">10</option>
+        <option value="12">12</option>
+      </select>
     </p>
     <p>
       <label>Nombre de manches</label>
@@ -83,7 +88,7 @@ const createTournament = async () => {
       <label>Type</label>
       <select v-model="type">
         <option value="Public">Public</option>
-        <option value="prive">Privé</option>
+        <option value="Privé">Privé</option>
       </select>
     </p>
     <p>
