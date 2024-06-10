@@ -56,7 +56,7 @@ const createTournament = async () => {
       <label>Jeu</label>
       <select v-model="jeu">
         <option value="valorant">Valorant</option>
-        <option value="lol">LoL</option>
+        <option value="lol">League of Legends</option>
       </select>
     </p>
     <p>

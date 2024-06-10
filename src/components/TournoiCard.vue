@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TournoiResponse } from '@/pocketbase-types';
+import type { TournoiResponse, TournoiRecord } from '@/pocketbase-types';
 import IconJeuTournoi from './icons/IconJeuTournoi.vue';
 import IconDateTournoi from './icons/IconDateTournoi.vue';
 import IconJoueurTournoi from './icons/IconJoueurTournoi.vue';
@@ -15,11 +15,20 @@ const formatDate = (dateString: string): string => {
     day: 'numeric',
   });
 };
+
+const getBannerImage = (game: string): string => {
+  if (game === 'League of Legends') {
+    return '/banner_lol.jpg';
+  } else if (game === 'Valorant') {
+    return '/banner_valorant.jpg';
+  }
+  return '';
+};
 </script>
 
 <template>
   <div class="card-tournament bg-gray-900 text-white p-4 rounded-lg shadow-md w-64">
-    <img src="" alt="Valorant" class="w-full h-32 object-cover rounded-t-lg" />
+    <img :src="getBannerImage(props.jeu)" alt="Game Banner" class="w-full h-32 object-cover rounded-t-lg" />
     <div class="p-4">
       <p class="text-lg font-bold mb-2">{{ props.nom }}</p>
       <div class="flex items-center my-2">
@@ -32,7 +41,7 @@ const formatDate = (dateString: string): string => {
       </div>
       <div class="flex items-center my-2">
         <IconJoueurTournoi class="mr-2" />
-        <p>{{ props.nb_joueurs }}</p>
+        <p>{{ props.nb_joueurs }} joueurs</p>
       </div>
       <div class="flex items-center my-2">
         <IconDateTournoi class="mr-2" />
