@@ -55,7 +55,7 @@ const createTournament = async () => {
 
 <template>
   <div>
-    <h1>Création de tournoi</h1>
+    <h1>Création de tournois</h1>
     <p>
       <label>Nom du tournoi</label>
       <input type="text" placeholder="Nom du tournoi" v-model="tournamentName">
