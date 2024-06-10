@@ -1,14 +1,12 @@
-<!-- id.vue -->
 <script setup lang="ts">
-import type { TerrainResponse, TournoiResponse } from '@/pocketbase-types';
-import { useRoute } from 'vue-router';
 import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import { oneIDTournoi, getTerrainsByTournoiId } from '@/backend';
 import TerrainCard from '../components/TerrainCard.vue';
 
 const route = useRoute();
-const unTournoi = ref<TournoiResponse | null>(null);
-const terrains = ref<TerrainResponse[]>([]);
+const unTournoi = ref(null);
+const terrains = ref([]);
 
 const fetchTournoiAndTerrains = async () => {
   try {
@@ -32,9 +30,19 @@ onMounted(() => {
 
     <div v-if="terrains.length > 0">
       <h2>Terrains</h2>
-      <div v-for="terrain in terrains" :key="terrain.id">
-        <TerrainCard :numero="terrain.numero" />
+      <div class="terrains-grid">
+        <div v-for="terrain in terrains" :key="terrain.id">
+          <TerrainCard :numero="terrain.numero" :joueurs="terrain.joueurs || []" />
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.terrains-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+</style>

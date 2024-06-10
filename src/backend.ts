@@ -164,15 +164,26 @@ export async function createTournament(tournamentData: {
 
 // Composants terrain
 
+
 export async function getTerrainsByTournoiId(tournoiId: string) {
   try {
     const terrains = await pb.collection('terrain').getFullList({
-      filter: `id_tournoi="${tournoiId}"`
-    })
-    return terrains
+      filter: `id_tournoi="${tournoiId}"`,
+      expand: 'id_participant' 
+    });
+    
+    return terrains.map(terrain => ({
+      ...terrain,
+      joueurs: [
+        terrain.expand?.id_participant?.[0] || { id: null, nom: 'Libre' },
+        terrain.expand?.id_participant?.[1] || { id: null, nom: 'Libre' }
+      ]
+    }));
   } catch (error) {
-    console.error('Erreur lors de la récupération des terrains', error)
-    throw error
+    console.error('Erreur lors de la récupération des terrains', error);
+    throw error;
   }
 }
+
+
 
