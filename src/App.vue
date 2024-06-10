@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import { onErrorCaptured } from 'vue'
-import { RouterLink, RouterView } from 'vue-router/auto'
-import Pocketbase from 'pocketbase'
-import Footer from './components/FooterPage.vue'
-import Header from'./components/HeaderPage.vue' 
-import HeaderSite from'./components/HeaderSitePage.vue' 
-import DiscordLogo from './components/icons/DiscordLogo.vue'
-import InstagramLogo from './components/icons/InstagramLogo.vue'
-import TwitterLogo from './components/icons/TwitterLogo.vue'
+import { onErrorCaptured, computed } from 'vue';
+import { RouterLink, RouterView } from 'vue-router';
+import Footer from './components/FooterPage.vue';
+import HeaderPage from './components/HeaderPage.vue';
+import HeaderSitePage from './components/HeaderSitePage.vue';
+import { useAuthStore } from './store/auth'; // Importer le store
+
+const authStore = useAuthStore();
+const isUserLoggedIn = computed(() => {
+  console.log('Current User ID:', authStore.getCurrentUserId.value); // Ajouter cette ligne pour vérifier l'état
+  return authStore.getCurrentUserId.value !== null;
+});
 
 onErrorCaptured((err, instance, info) => {
-  console.error('erreur : ', err, '\ninfo : ', info, '\ncomposant : ', instance)
-  return true
-})
-
-
+  console.error('erreur : ', err, '\ninfo : ', info, '\ncomposant : ', instance);
+  return true;
+});
 </script>
 
 <template>
-  
-  <Header />
- <main>
-      <nav>
+  <component :is="isUserLoggedIn ? HeaderSitePage : HeaderPage" />
+  <main>
+    <nav>
       <ul>
         <li>
           <RouterLink to="/" class="text-red-500 underline"> Accueil </RouterLink>
@@ -33,7 +33,7 @@ onErrorCaptured((err, instance, info) => {
           <RouterLink to="/connexion" class="text-red-500 underline"> Connexion </RouterLink>
         </li>
         <li>
-          <RouterLink to="/creationTournoi" class="text-red-500 underline">Creation Tournoi </RouterLink>
+          <RouterLink to="/creationTournoi" class="text-red-500 underline"> Creation Tournoi </RouterLink>
         </li>
         <li>
           <RouterLink to="/api" class="text-red-500 underline"> Tests API </RouterLink>
@@ -41,11 +41,11 @@ onErrorCaptured((err, instance, info) => {
       </ul>
     </nav>
     <RouterView v-slot="{ Component }">
-    <Suspense>
-      <component :is="Component" />
-    </Suspense>
-  </RouterView>
+      <Suspense>
+        <component :is="Component" />
+      </Suspense>
+    </RouterView>
   </main>
   <Footer />
-  
 </template>
+

@@ -5,12 +5,18 @@ import LogoNextUp from './icons/LogoNextUp.vue';
 import UpCoin from './icons/UpCoin.vue';
 import PhotoDeProfil from './icons/PhotoDeProfil.vue';
 import FlecheBleu from './icons/FlecheBleu.vue';
+import { logout } from '@/services/authService'; // Importer le service d'authentification
 
 
 const isMenuOpen = ref(false);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+};
+
+const handleLogout = () => {
+  logout();
+  console.log('User logged out'); // Vérifiez que l'utilisateur est déconnecté
 };
 </script>
 
@@ -47,7 +53,7 @@ const toggleMenu = () => {
 </style>
 
 <template>
-  <header class="bg-[#FFFFFF] py-4 md:py-6">
+  <header class="bg-[#1C1A1A] py-4 md:py-6">
     <div class="container mx-auto flex items-center justify-between px-4 md:px-6">
       <RouterLink to="/" class="flex items-center">
         <LogoNextUp class="w-[30vw] max-w-[300px] min-w-[150px] mr-4" />
@@ -57,27 +63,20 @@ const toggleMenu = () => {
         <ul class="hidden md:flex md:gap-16">
           <li><RouterLink to="/apropos" class="text-white hover:text-gray-300 menu-element">Mes tournois</RouterLink></li>
           <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Classement</RouterLink></li>
-          <!-- Cadre bleu agrandi autour du bouton "Inscription" -->
           <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Boutique</RouterLink></li>
-        <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">&nbsp;</RouterLink></li>
-
         </ul>
         <ul class="hidden md:flex md:gap-16">
-            <UpCoin class="w-12 h-12" />
-            
+          <UpCoin class="w-12 h-12" />
         </ul>
         <ul class="hidden md:flex md:gap-16">
-            
-            <li><RouterLink to="/connexion" class="text-[#36C1ED] menu-element-upcoins">1500</RouterLink></li>
-            <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">&nbsp;</RouterLink></li>
-            
+          <li><RouterLink to="/connexion" class="text-[#36C1ED] menu-element-upcoins">1500</RouterLink></li>
         </ul>
-
         <ul class="hidden justify-center md:flex md:gap-2">
-            <PhotoDeProfil class="w-12 h-12" />
-            <FlecheBleu class="w-12 h-12" />
+          <PhotoDeProfil class="w-12 h-12" />
+          <FlecheBleu class="w-12 h-12" />
         </ul>
-        
+        <!-- Bouton de déconnexion -->
+        <button @click="handleLogout" class="text-white bg-red-500 rounded-md px-4 py-2">Se déconnecter</button>
         <!-- Burger menu icon for mobile -->
         <div class="md:hidden flex items-center ml-auto" @click="toggleMenu">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#36C1ED] cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -95,6 +94,8 @@ const toggleMenu = () => {
         <li class="py-4 border-b border-gray-700"><RouterLink to="/apropos" @click="toggleMenu">Mes tournois</RouterLink></li>
         <li class="py-4 border-b border-gray-700"><RouterLink to="/connexion" @click="toggleMenu">Classement</RouterLink></li>
         <li class="py-4"><RouterLink to="/inscription" @click="toggleMenu">Boutique</RouterLink></li>
+        <!-- Bouton de déconnexion mobile -->
+        <li class="py-4"><button @click="handleLogout" class="text-white bg-red-500 rounded-md px-4 py-2">Se déconnecter</button></li>
       </ul>
     </div>
   </header>
