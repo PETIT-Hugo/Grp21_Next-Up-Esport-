@@ -47,7 +47,7 @@ const toggleMenu = () => {
 </style>
 
 <template>
-  <header class="bg-[#1C1A1A] py-4 md:py-6">
+  <header class="bg-[#FFFFFF] py-4 md:py-6">
     <div class="container mx-auto flex items-center justify-between px-4 md:px-6">
       <RouterLink to="/" class="flex items-center">
         <LogoNextUp class="w-[30vw] max-w-[300px] min-w-[150px] mr-4" />

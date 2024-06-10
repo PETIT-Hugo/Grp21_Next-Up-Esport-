@@ -7,7 +7,24 @@ const tournoiListe = await getAllTournois()
 
 <template>
   <h1 class="text-2xl">Page d'Accueil</h1>
-  <TournoiCard v-for="unTournoi in tournoiListe" :key="unTournoi.id" v-bind="unTournoi"/>
+         <RouterLink
+        v-for="unTournoi in tournoiListe"
+        :key="unTournoi.id"
+            :to="{
+                name: '/[id]',
+                params: {
+                id: unTournoi.id
+                }
+            }"
+
+            >   
+      <TournoiCard
+       
+        v-bind="unTournoi"
+        class="mx-auto"
+      />
+      
+    </RouterLink>
 
   
 

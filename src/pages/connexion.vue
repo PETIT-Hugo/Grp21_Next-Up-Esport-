@@ -21,7 +21,7 @@ const handleSignIn = async () => {
   } catch (e: any) {
     console.error(e);
     if (e.name === "UserNotFoundError") {
-      statusMessage.value = "Aucun utilisateur trouvé avec cette adresse mail ou ce pseudo.";
+      statusMessage.value = "Aucun utilisateur trouvé avec cette adresse mail";
     } else if (e.name === "IncorrectPasswordError") {
       statusMessage.value = "Mot de passe incorrect.";
     } else {
