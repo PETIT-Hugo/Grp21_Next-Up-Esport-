@@ -4,6 +4,16 @@ import { type TypedPocketBase } from './pocketbase-types.js'
 export const pb = new PocketBase('https://nextupesport.petit-hugommi1.fr:443')
 
 
+// Page d'accueil
+export async function getAllTournois() {
+  try {
+    const records = await pb.collection('tournoi').getFullList()
+    return records
+      } catch (error) {
+    console.error("Erreur lors de la récupération des tournois", error)
+    throw error
+  }
+}
 
 // Page inscription
 
