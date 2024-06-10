@@ -138,6 +138,12 @@ const handleSignUp = async () => {
     width: 450px;
 }
 
+.creer_un_compte {
+    font-family: 'Orbitron', sans-serif;
+    font-size:20px;
+    color: #FFFFFF;
+}
+
 </style>
 
 <template>
@@ -190,9 +196,13 @@ const handleSignUp = async () => {
 
 
       
-
-
-    <button @click="handleSignUp" class="bg-slate-400">S'inscrire</button>
-    <label id="status" v-text="statusMessage"></label>
+  <body class="flex  justify-center">
+  <div class="text-center">
+    <button @click="handleSignUp" class="bg-[#36C1ED] text-white hover:text-gray-300 rounded-md px-10 py-4 creer_un_compte">
+      Créer un compte
+    </button>
+    <label id="status" class="block mt-4 text-white" v-text="statusMessage"></label>
+  </div>
+</body>
   </div>
 </template>
