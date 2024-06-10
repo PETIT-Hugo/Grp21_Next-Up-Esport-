@@ -10,5 +10,5 @@ export const login = async (credentials) => {
 
 export const logout = () => {
   useAuthStore().setCurrentUserId(null)
-  // Autres actions de déconnexion si nécessaire, comme appeler une API de déconnexion
+
 }

@@ -1,31 +1,27 @@
 <script setup lang="ts">
-import TournoiCard from '@/components/TournoiCard.vue'
-import { getAllTournois } from '@/backend'
-//
-const tournoiListe = await getAllTournois()
+import TournoiCard from '@/components/TournoiCard.vue';
+import { getAllTournois } from '@/backend';
+
+// Récupérer la liste des tournois
+const tournoiListe = await getAllTournois();
 </script>
 
 <template>
-  <h1 class="text-2xl">Page d'Accueil</h1>
-         <RouterLink
+  <div class="bg-[#1C1A1A]">
+    <!-- Conteneur pour les cartes avec grille de 4 colonnes et espace réduit -->
+    <div class="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-8 pt-8">
+      <RouterLink
         v-for="unTournoi in tournoiListe"
         :key="unTournoi.id"
-            :to="{
-                name: '/[id]',
-                params: {
-                id: unTournoi.id
-                }
-            }"
-
-            >   
-      <TournoiCard
-       
-        v-bind="unTournoi"
-        class="mx-auto"
-      />
-      
-    </RouterLink>
-
-  
-
+        :to="{
+          name: '/[id]',
+          params: {
+            id: unTournoi.id
+          }
+        }"
+      >   
+        <TournoiCard v-bind="unTournoi" class="mx-auto" />
+      </RouterLink>
+    </div>
+  </div>
 </template>

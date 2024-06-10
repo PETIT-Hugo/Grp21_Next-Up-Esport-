@@ -27,8 +27,8 @@ const getBannerImage = (game: string): string => {
 </script>
 
 <template>
-  <div class="card-tournament bg-gray-900 text-white p-4 rounded-lg shadow-md w-64">
-    <img :src="getBannerImage(props.jeu)" alt="Game Banner" class="w-full h-32 object-cover rounded-t-lg" />
+  <div class="card-tournament bg-gray-900 text-white p-4 rounded-lg shadow-md">
+    <img :src="getBannerImage(props.jeu)" alt="Game Banner" class="custom-image w-full h-32 object-cover rounded-t-lg" />
     <div class="p-4">
       <p class="text-lg font-bold mb-2">{{ props.nom }}</p>
       <div class="flex items-center my-2">
@@ -58,22 +58,23 @@ const getBannerImage = (game: string): string => {
   color: #cbd5e0;
   border-radius: 0.375rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  width: 16rem; /* Width to match the example size */
+  width: 344px; /* Ajuster la largeur de la carte à 344px */
 }
 
-.card-tournament img {
+.card-tournament img.custom-image {
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
-  height: 8rem; /* Adjusted height for the banner */
+  height: 8rem; /* Hauteur ajustée pour la bannière */
+  width: 344px; /* Fixer la largeur de l'image à 344px */
 }
 
 .card-tournament .p-4 {
-  padding: 1rem; /* Adjust padding for consistent spacing */
+  padding: 1rem; /* Ajuster le padding pour un espacement cohérent */
 }
 
 .card-tournament .text-lg {
-  font-size: 1.125rem; /* Large text size */
-  margin-bottom: 0.5rem; /* Margin bottom for spacing */
+  font-size: 1.125rem; /* Taille de texte large */
+  margin-bottom: 0.5rem; /* Espace en bas pour espacement */
 }
 
 .card-tournament .flex {

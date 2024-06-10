@@ -7,11 +7,15 @@ import PhotoDeProfil from './icons/PhotoDeProfil.vue';
 import FlecheBleu from './icons/FlecheBleu.vue';
 import { logout } from '@/services/authService'; // Importer le service d'authentification
 
-
 const isMenuOpen = ref(false);
+const isDropdownOpen = ref(false);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+};
+
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value;
 };
 
 const handleLogout = () => {
@@ -38,17 +42,17 @@ const handleLogout = () => {
 }
 
 .menu-element {
-    font-family: 'Orbitron', sans-serif;
-    font-size:20px;
-    color: #FFFFFF;
-    font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  color: #FFFFFF;
+  font-weight: bold;
 }
 
 .menu-element-upcoins {
-    font-family: 'Orbitron', sans-serif;
-    font-size:20px;
-    color: #36C1ED;
-    font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  color: #36C1ED;
+  font-weight: bold;
 }
 </style>
 
@@ -65,18 +69,24 @@ const handleLogout = () => {
           <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Classement</RouterLink></li>
           <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Boutique</RouterLink></li>
         </ul>
-        <ul class="hidden md:flex md:gap-16">
+        <ul class="hidden md:flex md:gap-16 ml-12">
           <UpCoin class="w-12 h-12" />
         </ul>
         <ul class="hidden md:flex md:gap-16">
           <li><RouterLink to="/connexion" class="text-[#36C1ED] menu-element-upcoins">1500</RouterLink></li>
         </ul>
-        <ul class="hidden justify-center md:flex md:gap-2">
+        <div class="relative flex items-center ml-12"> <!-- Ajout de marge à gauche ici -->
           <PhotoDeProfil class="w-12 h-12" />
-          <FlecheBleu class="w-12 h-12" />
-        </ul>
-        <!-- Bouton de déconnexion -->
-        <button @click="handleLogout" class="text-white bg-red-500 rounded-md px-4 py-2">Se déconnecter</button>
+          <div @click="toggleDropdown" class="cursor-pointer">
+            <FlecheBleu class="w-12 h-12" />
+          </div>
+          <!-- Menu déroulant pour la déconnexion -->
+          <transition name="fade">
+            <div v-if="isDropdownOpen" class="absolute right-0 mt-20 w-48 bg-[#292929] rounded-md shadow-lg z-50">
+              <button @click="handleLogout" class="block w-full text-left px-4 py-2 text-white hover:bg-red-500 rounded-md">Se déconnecter</button>
+            </div>
+          </transition>
+        </div>
         <!-- Burger menu icon for mobile -->
         <div class="md:hidden flex items-center ml-auto" @click="toggleMenu">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#36C1ED] cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
