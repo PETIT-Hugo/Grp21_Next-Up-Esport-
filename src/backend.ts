@@ -3,6 +3,13 @@ import { type TypedPocketBase } from './pocketbase-types.js'
 
 export const pb = new PocketBase('https://nextupesport.petit-hugommi1.fr:443')
 
+
+
+export async function oneIDTournoi(id) {
+  const records = await pb.collection('tournoi').getOne(`${id}`)
+  return records
+}
+
 // Page d'accueil
 export async function getAllTournois() {
   try {
@@ -153,3 +160,19 @@ export async function createTournament(tournamentData: {
     throw error
   }
 }
+
+
+// Composants terrain
+
+export async function getTerrainsByTournoiId(tournoiId: string) {
+  try {
+    const terrains = await pb.collection('terrain').getFullList({
+      filter: `id_tournoi="${tournoiId}"`
+    })
+    return terrains
+  } catch (error) {
+    console.error('Erreur lors de la récupération des terrains', error)
+    throw error
+  }
+}
+
