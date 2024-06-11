@@ -89,6 +89,14 @@ const selectPlayers = (players: string) => {
     font-weight: 800;
     letter-spacing: -2.5px; /* Espacement des lettres de -4% */
 }
+
+.filtrage {
+  font-family: 'Orbitron', sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 </style>
 
 <template>
@@ -126,11 +134,11 @@ const selectPlayers = (players: string) => {
       <div class="flex space-x-4">
         <!-- Dropdown Button 1 -->
         <div class="relative">
-          <button @click="toggleGameDropdown" class="bg-[#2D2D2D] text-white py-2 px-4 h-16 rounded focus:outline-none">
+          <button @click="toggleGameDropdown" class="bg-[#2D2D2D] text-[#36C1ED] filtrage w-56 py-2 px-4 h-16 rounded focus:outline-none">
             JEUX
             <Fleche class="inline-block ml-2"/>
           </button>
-          <div v-if="showGameDropdown" class="absolute left-0 mt-2 w-48 bg-[#2D2D2D] text-white border border-[#A0A0A0] rounded">
+          <div v-if="showGameDropdown" class="absolute left-0 mt-2 w-56 bg-[#2D2D2D] text-[#36C1ED] filtrage border border-[#A0A0A0] rounded">
             <div @click="selectGame('Valorant')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">Valorant</div>
             <div @click="selectGame('League of Legends')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">League of Legends</div>
             <div @click="selectGame('Sans filtre')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">Sans filtre</div>
@@ -139,11 +147,11 @@ const selectPlayers = (players: string) => {
 
         <!-- Dropdown Button 2 -->
         <div class="relative">
-          <button @click="toggleTypeDropdown" class="bg-[#2D2D2D] text-white py-2 px-4 h-16 rounded focus:outline-none">
+          <button @click="toggleTypeDropdown" class="bg-[#2D2D2D] text-[#36C1ED] filtrage py-2 w-48 px-4 h-16 rounded focus:outline-none">
             TYPE
             <Fleche class="inline-block ml-2"/>
           </button>
-          <div v-if="showTypeDropdown" class="absolute left-0 mt-2 w-48 bg-[#2D2D2D] text-white border border-[#A0A0A0] rounded">
+          <div v-if="showTypeDropdown" class="absolute left-0 mt-2 w-48 bg-[#2D2D2D] text-[#36C1ED] filtrage border border-[#A0A0A0] rounded">
             <div @click="selectType('Public')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">Public</div>
             <div @click="selectType('Privé')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">Privé</div>
             <div @click="selectType('Sans filtre')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">Sans filtre</div>
@@ -152,11 +160,11 @@ const selectPlayers = (players: string) => {
 
         <!-- Dropdown Button 3 -->
         <div class="relative">
-          <button @click="togglePlayersDropdown" class="bg-[#2D2D2D] text-white py-2 px-4 h-16 rounded focus:outline-none">
+          <button @click="togglePlayersDropdown" class="bg-[#2D2D2D] text-[#36C1ED] filtrage w-48 py-2 px-4 h-16 rounded focus:outline-none">
             JOUEURS
             <Fleche class="inline-block ml-2"/>
           </button>
-          <div v-if="showPlayersDropdown" class="absolute left-0 mt-2 w-48 bg-[#2D2D2D] text-white border border-[#A0A0A0] rounded">
+          <div v-if="showPlayersDropdown" class="absolute left-0 mt-2 w-48 bg-[#2D2D2D] text-[#36C1ED] filtrage border border-[#36C1ED] rounded">
             <div @click="selectPlayers('6 Joueurs')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">6 Joueurs</div>
             <div @click="selectPlayers('8 Joueurs')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">8 Joueurs</div>
             <div @click="selectPlayers('10 Joueurs')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">10 Joueurs</div>
