@@ -169,48 +169,62 @@ export async function createTournament(tournamentData: {
 
 export async function registerPlayer(tournoiId: string, userId: string) {
   try {
-    const terrains = await getTerrainsByTournoiId(tournoiId);
+    if (!userId) {
+      throw new Error('Vous devez être connecté pour vous inscrire.')
+    }
 
-    let terrainLibre = null;
+    const terrains = await getTerrainsByTournoiId(tournoiId)
+
+    // Vérifier si l'utilisateur est déjà inscrit dans le tournoi
+    const joueurs = await pb.collection('joueur').getFullList({
+      filter: `id_utilisateur="${userId}" && id_tournoi="${tournoiId}"`
+    })
+
+    if (joueurs.length > 0) {
+      throw new Error('Vous êtes déjà inscrit à ce tournoi.')
+    }
+
+    let terrainLibre = null
     for (const terrain of terrains.sort((a, b) => a.numero - b.numero)) {
       if ((terrain.participants || []).length < 2) {
-        terrainLibre = terrain;
-        break;
+        terrainLibre = terrain
+        break
       }
     }
 
     if (!terrainLibre) {
-      throw new Error('Pas de place libre dans le tournoi.');
+      throw new Error('Pas de place libre dans le tournoi.')
     }
 
-    const userRecord = await pb.collection('utilisateur').getOne(userId);
-    const pseudo = userRecord.pseudo;
+    const userRecord = await pb.collection('utilisateur').getOne(userId)
+    const pseudo = userRecord.pseudo
 
     const newPlayer = {
       num_terrain: terrainLibre.numero,
       victoires: 0,
-      createur: false, 
+      createur: false,
       id_utilisateur: userId,
       id_tournoi: tournoiId
-    };
+    }
 
-    const playerRecord = await pb.collection('joueur').create(newPlayer);
+    const playerRecord = await pb.collection('joueur').create(newPlayer)
 
     if (!terrainLibre.participants) {
-      terrainLibre.participants = [];
+      terrainLibre.participants = []
     }
-    terrainLibre.participants.push(playerRecord.id);
+    terrainLibre.participants.push(playerRecord.id)
 
     await pb.collection('terrain').update(terrainLibre.id, {
       participants: terrainLibre.participants
-    });
+    })
 
-    return playerRecord;
+    return playerRecord
   } catch (error) {
-    console.error("Erreur lors de l'inscription du joueur:", error);
-    throw error;
+    console.error("Erreur lors de l'inscription du joueur:", error)
+    throw error
   }
 }
+
 
 export async function getTerrainsByTournoiId(tournoiId: string) {
   try {
