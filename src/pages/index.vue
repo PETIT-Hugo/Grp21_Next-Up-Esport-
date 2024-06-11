@@ -44,6 +44,14 @@ const selectPlayers = (players: string) => {
   selectedPlayers.value = players;
   showPlayersDropdown.value = false;
 };
+
+// Method to reset all filters
+const resetFilters = () => {
+  selectedGame.value = 'Sans filtre';
+  selectedType.value = 'Sans filtre';
+  selectedPlayers.value = 'Sans filtre';
+  searchQuery.value = '';
+};
 </script>
 
 
@@ -172,6 +180,11 @@ const selectPlayers = (players: string) => {
             <div @click="selectPlayers('Sans filtre')" class="px-4 py-2 cursor-pointer hover:bg-gray-700">Sans filtre</div>
           </div>
         </div>
+
+        <!-- Reset Button -->
+        <button @click="resetFilters" class="bg-[#36C1ED] text-white filtrage py-2 px-4 h-16 rounded focus:outline-none">
+          Réinitialiser
+        </button>
       </div>
     </div>
 
@@ -191,4 +204,3 @@ const selectPlayers = (players: string) => {
     </div>
   </div>
 </template>
-
