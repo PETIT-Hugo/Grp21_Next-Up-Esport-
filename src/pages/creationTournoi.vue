@@ -54,49 +54,83 @@ const createTournament = async () => {
 </script>
 
 <template>
-  <div>
-    <h1>Création de tournois</h1>
-    <p>
-      <label>Nom du tournoi</label>
-      <input type="text" placeholder="Nom du tournoi" v-model="tournamentName">
-    </p>
-    <p>
-      <label>Jeu</label>
-      <select v-model="jeu">
-        <option value="Valorant">Valorant</option>
-        <option value="League of Legends">League of Legends</option>
-      </select>
-    </p>
-    <p>
-      <label>Nombre de joueurs</label>
-      <select v-model="nbJoueurs">
-        <option value="6">6</option>
-        <option value="8">8</option>
-        <option value="10">10</option>
-        <option value="12">12</option>
-      </select>
-    </p>
-    <p>
-      <label>Nombre de manches</label>
-      <input type="number" v-model="nbManches">
-    </p>
-    <p>
-      <label>Date</label>
-      <input type="date" v-model="date">
-    </p>
-    <p>
-      <label>Type</label>
-      <select v-model="type">
-        <option value="Public">Public</option>
-        <option value="Privé">Privé</option>
-      </select>
-    </p>
-    <p>
-      <label>Description</label>
-      <textarea v-model="description"></textarea>
-    </p>
-
-    <button @click="createTournament" class="bg-slate-400">Créer le tournoi</button>
-    <label v-text="statusMessage"></label>
+  <div class="bg-[#292929] min-h-screen p-8 text-white">
+    <h1 class="text-6xl font-bold mb-4 balise"><span class="text-[#36C1ED]">Création</span> de tournois</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block mb-2 balise">Nom du tournoi*</label>
+        <input type="text" placeholder="Entrez le nom du tournoi..." v-model="tournamentName" class="w-full p-2 bg-[#353535] rounded text-white" />
+      </div>
+      <div>
+        <label class="block mb-2 balise">Description</label>
+        <textarea placeholder="Description..." v-model="description" class="w-full p-2 bg-[#353535] rounded text-white"></textarea>
+      </div>
+      <div>
+        <label class="block mb-2 balise">Jeu*</label>
+        <select v-model="jeu" class="w-full p-2 bg-[#353535] rounded text-white">
+          <option value="Valorant">Valorant</option>
+          <option value="League of Legends">League of Legends</option>
+        </select>
+      </div>
+      <div>
+        <label class="block mb-2 balise">Type*</label>
+        <select v-model="type" class="w-full p-2 bg-[#353535] rounded text-white">
+          <option value="Public">Public</option>
+          <option value="Privé">Privé</option>
+        </select>
+      </div>
+      <div>
+        <label class="block mb-2 balise">Nombre de joueurs*</label>
+        <select v-model="nbJoueurs" class="w-full p-2 bg-[#353535] rounded text-white">
+          <option value="6">6</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+          <option value="12">12</option>
+        </select>
+      </div>
+      <div>
+        <label class="block mb-2 balise">Nombre de manches*</label>
+        <input type="number" v-model="nbManches" class="w-full p-2 bg-[#353535] rounded text-white" />
+      </div>
+      <div>
+        <label class="block mb-2 balise">Date du tournoi*</label>
+        <input type="date" v-model="date" class="w-full p-2 bg-[#353535] rounded text-white" />
+      </div>
+    </div>
+    <div class="text-center mt-8">
+      <button @click="createTournament" class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer">Créer le tournoi</button>
+      <p v-if="statusMessage" class="text-white mt-4">{{ statusMessage }}</p>
+    </div>
   </div>
 </template>
+
+<style>
+.bouton_participer {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px; /* Augmenté la taille de la police */
+  color: #FFFFFF;
+  padding: 1em 2em; /* Agrandi le bouton */
+}
+
+.glow-button {
+  animation: glow 1.5s infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px #36C1ED;
+  }
+  50% {
+    box-shadow: 0 0 20px #36C1ED;
+  }
+}
+
+.balise {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 900;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+</style>
