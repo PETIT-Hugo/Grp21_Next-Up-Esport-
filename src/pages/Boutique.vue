@@ -48,7 +48,12 @@ onMounted(() => {
         <p class="mb-4">Ne vous inquiétez pas, nous avons la solution pour vous. Achetez des Upcoins avec le bouton ci-dessous !</p>
         <p>&nbsp;</p>
         <p class="mb-4">Vous pouvez également voir le nombre d’Upcoins en votre possession dans le menu, à côté de votre profil.</p>
-        <button class="bg-[#36C1ED] text-white py-3 px-6 rounded-lg mt-4 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/50 transition duration-300 ease-in-out typo">Acheter des Upcoins</button>
+        <a href="/BoutiqueUpcoins">
+  <button class="bg-[#36C1ED] text-white py-3 px-6 rounded-lg mt-4 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/50 transition duration-300 ease-in-out typo">
+    Acheter des Upcoins
+  </button>
+</a>
+
       </div>
       <div class="w-1/2 flex justify-center">
         <img src="../components/img/Upcoins_racks.webp" alt="Upcoins racks" class="max-w-full h-auto w-3/4" />
