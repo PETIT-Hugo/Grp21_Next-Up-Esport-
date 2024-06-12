@@ -6,6 +6,9 @@ import UpCoin from './icons/UpCoin.vue';
 import PhotoDeProfil from './icons/PhotoDeProfil.vue';
 import FlecheBleu from './icons/FlecheBleu.vue';
 import { logout } from '@/services/authService'; 
+import type { UtilisateurResponse } from '@/pocketbase-types';
+
+const props = defineProps<UtilisateurResponse>();
 
 const isMenuOpen = ref(false);
 const isDropdownOpen = ref(false);
@@ -67,13 +70,13 @@ const handleLogout = () => {
         <ul class="hidden md:flex md:gap-16">
           <li><RouterLink to="/apropos" class="text-white hover:text-gray-300 menu-element">Mes tournois</RouterLink></li>
           <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Classement</RouterLink></li>
-          <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Boutique</RouterLink></li>
+          <li><RouterLink to="/Boutique" class="text-white hover:text-gray-300 menu-element">Boutique</RouterLink></li>
         </ul>
         <ul class="hidden md:flex md:gap-16 ml-12">
           <UpCoin class="w-12 h-12" />
         </ul>
         <ul class="hidden md:flex md:gap-16">
-          <li><RouterLink to="/connexion" class="text-[#36C1ED] menu-element-upcoins">1500</RouterLink></li>
+          <li><RouterLink to="/connexion" class="text-[#36C1ED] menu-element-upcoins">{{ props.upcoins }} 1500</RouterLink></li>
         </ul>
         <div class="relative flex items-center ml-12"> <!-- Ajout de marge à gauche ici -->
           <PhotoDeProfil class="w-12 h-12" />
@@ -103,7 +106,7 @@ const handleLogout = () => {
       <ul class="text-white text-center">
         <li class="py-4 border-b border-gray-700"><RouterLink to="/apropos" @click="toggleMenu">Mes tournois</RouterLink></li>
         <li class="py-4 border-b border-gray-700"><RouterLink to="/connexion" @click="toggleMenu">Classement</RouterLink></li>
-        <li class="py-4"><RouterLink to="/inscription" @click="toggleMenu">Boutique</RouterLink></li>
+        <li class="py-4"><RouterLink to="/Boutique" @click="toggleMenu">Boutique</RouterLink></li>
         <!-- Bouton de déconnexion mobile -->
         <li class="py-4"><button @click="handleLogout" class="text-white bg-red-500 rounded-md px-4 py-2">Se déconnecter</button></li>
       </ul>

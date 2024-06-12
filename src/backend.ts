@@ -10,6 +10,16 @@ export async function oneIDTournoi(id) {
   return records
 }
 
+export async function getAllCosmetique() {
+  try {
+    const records = await pb.collection('cosmetique').getFullList()
+    return records
+  } catch (error) {
+    console.error('Erreur lors de la récupération des cosmetiques', error)
+    throw error
+  }
+}
+
 // Page d'accueil
 export async function getAllTournois() {
   try {

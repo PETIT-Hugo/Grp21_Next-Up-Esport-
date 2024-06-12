@@ -56,7 +56,7 @@ const formatDate = (dateString: string): string => {
 <template>
   <div class="bg-[#1C1A1A] min-h-screen p-8">
     <div class="text-center mb-8">
-      <h1 class="titre-element-bleu">Tournois NextUp</h1>
+      <h1 class="titre-element-bleu">{{ unTournoi?.nom }}</h1>
     </div>
 
     <div class="flex flex-col md:flex-row justify-center items-start space-y-8 md:space-y-0 md:space-x-8 mx-12">

@@ -6,6 +6,7 @@ import HeaderPage from './components/HeaderPage.vue';
 import HeaderSitePage from './components/HeaderSitePage.vue';
 import { useAuthStore } from './store/auth'; // Importer le store
 
+
 const authStore = useAuthStore();
 const isUserLoggedIn = computed(() => {
   console.log('Current User ID:', authStore.getCurrentUserId.value); // Ajouter cette ligne pour vérifier l'état

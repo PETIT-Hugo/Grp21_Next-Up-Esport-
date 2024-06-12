@@ -2,6 +2,9 @@
 import { ref } from 'vue';
 import { signIn } from '@/backend';
 import { useAuthStore } from '@/store/auth';
+import type { UtilisateurResponse } from '@/pocketbase-types';
+
+const props = defineProps<UtilisateurResponse>();
 
 const identifier = ref('');
 const mdp = ref('');
@@ -38,7 +41,7 @@ const handleSignIn = async () => {
       <h1 class="titre-element-bleu">Se connecter<span class="titre-element-blanc"> à NextUp E-Sport</span></h1>
     </div>
     <div class="justify-center mx-4 flex">
-      <p class="sous-titre-element">Bienvenue sur NextUp E-Sport ! Indiquer ci-dessous vos informations de connexion pour accéder au site.</p>
+      <p class="menu-element">Bienvenue sur NextUp E-Sport ! Indiquer ci-dessous vos informations de connexion pour accéder au site.</p>
     </div>
   </div>
   <div class="custom-bg flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
