@@ -238,30 +238,41 @@ export async function registerPlayer(tournoiId: string, userId: string) {
 
 export async function getTerrainsByTournoiId(tournoiId: string) {
   try {
+    console.log(`Récupération des terrains pour le tournoi ID: ${tournoiId}`)
     const terrains = await pb.collection('terrain').getFullList({
       filter: `id_tournoi="${tournoiId}"`,
       expand: 'participants'
-    });
+    })
 
-    const joueurs = await pb.collection('joueur').getFullList();
-    const utilisateurs = await pb.collection('utilisateur').getFullList();
-    
-    const utilisateurMap = Object.fromEntries(utilisateurs.map(user => [user.id, user.pseudo]));
-    const joueurMap = Object.fromEntries(joueurs.map(joueur => [joueur.id, joueur.id_utilisateur]));
+    if (!terrains || terrains.length === 0) {
+      throw new Error(`Aucun terrain trouvé pour le tournoi ID: ${tournoiId}`)
+    }
 
-    return terrains.map(terrain => ({
+    const joueurs = await pb.collection('joueur').getFullList()
+    const utilisateurs = await pb.collection('utilisateur').getFullList()
+
+    const utilisateurMap = Object.fromEntries(utilisateurs.map((user) => [user.id, user.pseudo]))
+    const joueurMap = Object.fromEntries(
+      joueurs.map((joueur) => [joueur.id, joueur.id_utilisateur])
+    )
+
+    return terrains.map((terrain) => ({
       ...terrain,
-      joueurs: (terrain.participants || []).map(participantId => {
-        const userId = joueurMap[participantId];
-        const pseudo = utilisateurMap[userId];
-        return userId ? { id: participantId, nom: pseudo } : { id: null, nom: 'Libre' };
+      joueurs: (terrain.participants || []).map((participantId) => {
+        const userId = joueurMap[participantId]
+        const pseudo = utilisateurMap[userId]
+        const gagnant = joueurs.find((joueur) => joueur.id === participantId)?.gagnant // Ajout du statut de gagnant
+        return userId
+          ? { id: participantId, nom: pseudo, gagnant }
+          : { id: null, nom: 'Libre', gagnant: false }
       })
-    }));
+    }))
   } catch (error) {
-    console.error('Erreur lors de la récupération des terrains', error);
-    throw error;
+    console.error('Erreur lors de la récupération des terrains', error)
+    throw error
   }
 }
+
 
 export async function getTournoisByUser(userId: string) {
   try {
@@ -274,6 +285,92 @@ export async function getTournoisByUser(userId: string) {
     throw error
   }
 }
+
+export async function nextRound(tournoiId: string) {
+  try {
+    console.log(`Début de la fonction nextRound pour le tournoi ID: ${tournoiId}`)
+    const terrains = await getTerrainsByTournoiId(tournoiId)
+
+    if (!terrains || terrains.length === 0) {
+      throw new Error(`Aucun terrain trouvé pour le tournoi ID: ${tournoiId}`)
+    }
+
+    console.log('Terrains récupérés:', terrains)
+
+    // Mettre à jour les gagnants pour chaque terrain
+    for (const terrain of terrains) {
+      const participants = terrain.joueurs
+      console.log(`Participants du terrain ${terrain.id}:`, participants)
+
+      if (participants.length === 1) {
+        // Si un seul participant, il est automatiquement gagnant
+        await pb.collection('joueur').update(participants[0].id, {
+          gagnant: true
+        })
+      } else if (participants.length === 2) {
+        // Choisir un gagnant aléatoire entre les deux participants
+        const winnerIndex = Math.floor(Math.random() * 2)
+        const loserIndex = winnerIndex === 0 ? 1 : 0
+        await pb.collection('joueur').update(participants[winnerIndex].id, {
+          gagnant: true
+        })
+        await pb.collection('joueur').update(participants[loserIndex].id, {
+          gagnant: false
+        })
+      }
+    }
+
+    // Mettre à jour la manche actuelle du tournoi
+    const tournoi = await oneIDTournoi(tournoiId)
+    const updatedRound = tournoi.manche_actuelle + 1
+    await pb.collection('tournoi').update(tournoiId, {
+      manche_actuelle: updatedRound
+    })
+
+    return { success: true }
+  } catch (error) {
+    console.error('Erreur lors du passage à la manche suivante:', error)
+    throw error
+  }
+}
+
+
+export async function getPlayersByTournoiId(tournoiId: string) {
+  try {
+    const joueurs = await pb.collection('joueur').getFullList({
+      filter: `id_tournoi="${tournoiId}"`
+    })
+    return joueurs
+  } catch (error) {
+    console.error('Erreur lors de la récupération des joueurs:', error)
+    throw error
+  }
+}
+
+export async function getUserTournaments(userId: string) {
+  try {
+    // Tournois créés par l'utilisateur
+    const createdTournaments = await pb.collection('tournoi').getFullList({
+      filter: `id_createur="${userId}"`
+    });
+
+    // Tournois auxquels l'utilisateur est inscrit
+    const playerRecords = await pb.collection('joueur').getFullList({
+      filter: `id_utilisateur="${userId}"`
+    });
+
+    const joinedTournamentsIds = playerRecords.map(record => record.id_tournoi);
+    const joinedTournaments = await pb.collection('tournoi').getFullList({
+      filter: `id in (${joinedTournamentsIds.join(',')})`
+    });
+
+    return { createdTournaments, joinedTournaments };
+  } catch (error) {
+    console.error('Erreur lors de la récupération des tournois de l\'utilisateur:', error);
+    throw error;
+  }
+}
+
 
 // backend.ts
 

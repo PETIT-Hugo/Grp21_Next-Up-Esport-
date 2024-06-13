@@ -3,8 +3,10 @@ import type { TerrainResponse } from '@/pocketbase-types';
 
 const props = defineProps<{
   numero: number,
-  joueurs: { id: string, nom: string }[]
+  joueurs: { id: string, nom: string, gagnant: boolean }[]
 }>();
+
+
 </script>
 
 <template>
@@ -12,17 +14,31 @@ const props = defineProps<{
     <h1 class="terrain-title">Terrain {{ props.numero }}</h1>
     <div class="terrain-card">
       <div class="terrain-content">
-        <div class="player">{{ props.joueurs[0]?.nom || 'Libre' }}</div>
+        <div class="player" :class="{ winner: props.joueurs[0]?.gagnant, loser: props.joueurs[0] && !props.joueurs[0]?.gagnant }">
+          {{ props.joueurs[0]?.nom || 'Libre' }}
+        </div>
         <div class="vs-container">
           <div class="vs">VS</div>
         </div>
-        <div class="player">{{ props.joueurs[1]?.nom || 'Libre' }}</div>
+        <div class="player" :class="{ winner: props.joueurs[1]?.gagnant, loser: props.joueurs[1] && !props.joueurs[1]?.gagnant }">
+          {{ props.joueurs[1]?.nom || 'Libre' }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.player.winner {
+  color: #77ec9a;
+}
+
+.player.loser {
+  color: whitesmoke /* Assurez-vous que les perdants sont en rouge pour mieux les distinguer */
+}
+
+/* Existing styles */
+
 @keyframes glow {
   0%, 100% {
     box-shadow: 0 0 10px #00ffff;
@@ -68,7 +84,6 @@ const props = defineProps<{
 
 .player {
   background-color: #333;
-  
   margin: 0.5em 0;
   font-family: 'Orbitron', sans-serif; 
   font-size: 24px;
@@ -94,7 +109,7 @@ const props = defineProps<{
   content: '';
   position: absolute;
   top: 50%;
-  width: calc(50% - 2em); /* Adjust the width to reach the center */
+  width: calc(50% - 2em);
   height: 2px;
   background-color: #00ffff;
 }
