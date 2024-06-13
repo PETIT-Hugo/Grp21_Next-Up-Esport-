@@ -48,14 +48,14 @@ const handleSignIn = async () => {
   </div>
   <div class="custom-bg flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <p>
-      <label class="text-[#7C7C7C]">Pseudo ou Courriel</label>
+      <label class="text-[#7C7C7C] typo">Pseudo ou Courriel</label>
       <input type="text" placeholder="exemple@abc.fr" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4 placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="identifier">
     </p>
-    <p>
-      <label class="text-[#7C7C7C]">Mot de passe</label>
+    <p class="mt-8">
+      <label class="text-[#7C7C7C] typo">Mot de passe</label>
       <input type="password" minlength="1" placeholder="Mot de passe" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4 placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="mdp">
     </p>
-    <button @click="handleSignIn" class="bg-[#36C1ED] text-white hover:text-gray-300 rounded-md px-10 py-4 creer_un_compte mt-4">Se connecter</button>
+    <button @click="handleSignIn" class="bg-[#36C1ED] mt-8 text-white hover:text-gray-300 rounded-md px-10 py-4 creer_un_compte typo">Se connecter</button>
     <label id="status" class="block mt-4 text-white" v-text="statusMessage"></label>
   </div>
 </template>
@@ -89,5 +89,9 @@ const handleSignIn = async () => {
   font-size: 20px;
   color: #36C1ED;
   font-weight: bold;
+}
+
+.typo {
+  font-family: 'Orbitron', sans-serif;
 }
 </style>

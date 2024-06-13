@@ -38,7 +38,7 @@ onMounted(() => {
           <h2 class="cosmetique-name absolute bottom-0 w-full bg-[#1C1A1A] bg-opacity-50 text-white text-center m-0 py-4 text-2xl">500 Upcoins</h2>
         </div>
         <a href="https://buy.stripe.com/test_00g4iK1tn7TNfSM5kk">
-  <button class="flex items-center justify-center w-10/12 mx-auto mt-3 mb-3 py-3 bg-[#36C1ED] text-white rounded-lg text-center cursor-pointer hover:bg-[#5aecff] hover:shadow-lg transition duration-300 ease-in-out">
+  <button class="flex items-center justify-center w-10/12 mx-auto mt-10 mb-3 py-3 bg-[#36C1ED] text-white rounded-lg text-center cursor-pointer hover:bg-[#5aecff] hover:shadow-lg transition duration-300 ease-in-out">
     <p class="typo mx-auto">Acheter</p>
   </button>
 </a>
@@ -52,7 +52,7 @@ onMounted(() => {
           <h2 class="cosmetique-name absolute bottom-0 w-full bg-[#1C1A1A] bg-opacity-50 text-white text-center m-0 py-4 text-2xl">1500 Upcoins</h2>
         </div>
         <a href="https://buy.stripe.com/test_00g7uW0pj2zt6iceUV">
-  <button class="flex items-center justify-center w-10/12 mx-auto mt-3 mb-3 py-3 bg-[#36C1ED] text-white rounded-lg text-center cursor-pointer hover:bg-[#5aecff] hover:shadow-lg transition duration-300 ease-in-out">
+  <button class="flex items-center justify-center w-10/12 mx-auto mt-10 mb-3 py-3 bg-[#36C1ED] text-white rounded-lg text-center cursor-pointer hover:bg-[#5aecff] hover:shadow-lg transition duration-300 ease-in-out">
     <p class="typo mx-auto">Acheter</p>
   </button>
 </a>
@@ -67,7 +67,7 @@ onMounted(() => {
           <h2 class="cosmetique-name absolute bottom-0 w-full bg-[#1C1A1A] bg-opacity-50 text-white text-center m-0 py-4 text-2xl">5000 Upcoins</h2>
         </div>
         <a href="https://buy.stripe.com/test_aEU2aCgoheib360eUW">
-  <button class="flex items-center justify-center w-10/12 mx-auto mt-3 mb-3 py-3 bg-[#36C1ED] text-white rounded-lg text-center cursor-pointer hover:bg-[#5aecff] hover:shadow-lg transition duration-300 ease-in-out">
+  <button class="flex items-center justify-center w-10/12 mx-auto mt-10 mb-3 py-3 bg-[#36C1ED] text-white rounded-lg text-center cursor-pointer hover:bg-[#5aecff] hover:shadow-lg transition duration-300 ease-in-out">
     <p class="typo mx-auto">Acheter</p>
   </button>
 </a>
