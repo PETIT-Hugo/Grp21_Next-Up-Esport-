@@ -72,7 +72,7 @@ import TwitterLogo from './icons/TwitterLogo.vue';
     
     
       <div class="flex justify-end">
-        <LogoNextUp />
+        <img src="../components/icons/nextupfinal.webp" class="w-[30vw] max-w-[200px] min-w-[150px] mr-4" />
       </div>
       <!-- Flèche SVG et texte de droits d'auteur -->
       <div class="flex items-center justify-end text-sm text-white mt-4 uppercase-title">

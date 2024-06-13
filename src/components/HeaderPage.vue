@@ -28,17 +28,17 @@ const toggleMenu = () => {
 }
 
 .menu-element {
-    font-family: 'Orbitron', sans-serif;
-    font-size:20px;
-    color: #FFFFFF;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  color: #FFFFFF;
 }
 </style>
 
 <template>
   <header class="bg-[#1C1A1A] py-4 md:py-6">
     <div class="container mx-auto flex items-center justify-between px-4 md:px-6">
-      <RouterLink to="/" class="flex items-center">
-        <LogoNextUp class="w-[30vw] max-w-[300px] min-w-[150px] mr-4" />
+      <RouterLink to="/" class="flex items-center mx-16">
+        <img src="../components/icons/nextupfinal.webp" class="w-[30vw] max-w-[200px] min-w-[150px] mr-4" />
       </RouterLink>
       <nav class="relative flex items-center justify-center flex-grow md:flex-none md:w-1/2">
         <!-- Menu for desktop -->
@@ -68,10 +68,8 @@ const toggleMenu = () => {
       </ul>
     </div>
   </header>
+  <div class="w-full h-0.5 bg-[#D6EAF0]"></div> <!-- Barre blanche -->
 </template>
-
-
-
 
 
 
