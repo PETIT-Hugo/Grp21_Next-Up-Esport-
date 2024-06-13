@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
-import { oneIDTournoi, getTerrainsByTournoiId, registerPlayer, nextRound, getPlayersByTournoiId, getUserTournaments } from '@/backend';
+import { oneIDTournoi, getTerrainsByTournoiId, registerPlayer, nextRound, applyMontanteDescendante, getPlayersByTournoiId, getUserTournaments } from '@/backend';
 import { useAuthStore } from '@/store/auth';
 import TerrainCard from '../components/TerrainCard.vue';
 
@@ -12,6 +12,7 @@ const terrains = ref([]);
 const joueurs = ref([]);
 const statusMessage = ref('');
 const userTournaments = ref({ createdTournaments: [], joinedTournaments: [] });
+const isFinDeManche = ref(false); // Variable pour gérer l'état des boutons
 
 const fetchTournoiAndTerrains = async () => {
   try {
@@ -56,14 +57,27 @@ const inscrireJoueur = async () => {
 
 const avancerManche = async () => {
   try {
-    await nextRound(route.params.id);
-    statusMessage.value = 'La manche suivante a commencé!';
+    const result = await nextRound(route.params.id);
+    statusMessage.value = 'Les gagnants ont été définis!';
+    isFinDeManche.value = true; // Passer à l'étape "Manche suivante"
+    await nextTick(); // Assurer la mise à jour du DOM
     await fetchTournoiAndTerrains(); // Rafraîchir les données après mise à jour
   } catch (error) {
     statusMessage.value = `Erreur lors du passage à la manche suivante: ${error.message}`;
   }
 };
 
+const appliquerMontanteDescendante = async () => {
+  try {
+    const result = await applyMontanteDescendante(route.params.id);
+    statusMessage.value = 'La réorganisation des joueurs est terminée!';
+    isFinDeManche.value = false; // Revenir à l'étape "Fin de manche"
+    await nextTick(); // Assurer la mise à jour du DOM
+    await fetchTournoiAndTerrains(); // Rafraîchir les données après mise à jour
+  } catch (error) {
+    statusMessage.value = `Erreur lors de la réorganisation des joueurs: ${error.message}`;
+  }
+};
 
 const isCreatorRegistered = () => {
   const userId = authStore.getCurrentUserId.value;
@@ -85,8 +99,6 @@ const formatDate = (dateString: string): string => {
     day: 'numeric',
   });
 };
-
-
 </script>
 
 <template>
@@ -154,8 +166,21 @@ const formatDate = (dateString: string): string => {
     </div>
 
     <div class="text-center mt-8">
-      <button v-if="isCreatorRegistered()" class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" @click="avancerManche">Fin de manche</button>
-      <button v-else class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" @click="inscrireJoueur">Participer au tournoi</button>
+      <button v-if="isCreatorRegistered()" 
+              class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" 
+              @click="avancerManche">
+        Fin de manche
+      </button>
+      <button v-if="isCreatorRegistered()" 
+              class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" 
+              @click="appliquerMontanteDescendante">
+        Manche suivante
+      </button>
+      <button v-else-if="!isCreatorRegistered()" 
+              class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" 
+              @click="inscrireJoueur">
+        Participer au tournoi
+      </button>
       <p v-if="statusMessage" class="text-blue-200 mt-4">{{ statusMessage }}</p>
     </div>
   </div>
