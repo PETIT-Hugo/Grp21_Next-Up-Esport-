@@ -45,7 +45,7 @@ onMounted(async () => {
   <div class="bg-[#1C1A1A] min-h-screen p-8">
     <div class="flex items-center justify-center mx-8 mb-8">
       <div class="flex-grow border-t-2 border-white"></div>
-      <h2 class="mx-12 titre-element-bleu">MES <span class="titre-element-blanc">TOURNOIS</span></h2>
+      <h2 class="mx-12 titre-element-bleu mb-0">MES <span class="titre-element-blanc">TOURNOIS</span></h2>
       <div class="flex-grow border-t-2 border-white"></div>
     </div>
     <section class="bg-[#292929]">

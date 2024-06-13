@@ -69,7 +69,7 @@ import TwitterLogo from './icons/TwitterLogo.vue';
           <ul class="space-y-2">
             <li><a href="mailto:contact@nextup-esport.com" class="text-white hover:text-gray-300 elements-title">contact@nextup-esport.com</a></li>
             <li class="flex items-center">
-              <a href="https://twitter.com" target="_blank" class="mr-2 hover:text-gray-300">
+              <a href="https://x.com/NextUpEsport" target="_blank"  class="mr-2 hover:text-gray-300">
                 <TwitterLogo />
               </a>
               <a href="https://instagram.com" target="_blank" class="mx-2 hover:text-gray-300">
@@ -101,4 +101,3 @@ import TwitterLogo from './icons/TwitterLogo.vue';
     </div>
   </footer>
 </template>
-  

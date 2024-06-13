@@ -70,8 +70,8 @@ onMounted(() => {
 
 .titre-element-bleu {
   font-family: 'Mulish', sans-serif;
-  font-size: 6vw; /* Responsive font size */
-  max-font-size: 50px;
+  font-size: 4vw; /* Responsive font size */
+  
   color: #36C1ED;
   font-weight: 800;
   letter-spacing: -2.5px; /* Espacement des lettres de -4% */
@@ -79,8 +79,8 @@ onMounted(() => {
 
 .titre-element-blanc {
   font-family: 'Mulish', sans-serif;
-  font-size: 6vw; /* Responsive font size */
-  max-font-size: 50px;
+  font-size: 4vw; /* Responsive font size */
+  
   color: #ffffff;
   font-weight: 800;
   letter-spacing: -2.5px; /* Espacement des lettres de -4% */
