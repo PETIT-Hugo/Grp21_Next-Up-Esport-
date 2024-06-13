@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const PROXY_URL = 'http://localhost:3000/api/riot'
+const PROXY_URL = 'https://nextupesport.petit-hugommi1.fr/api/riot';
 
 export async function getAccountByRiotId(gameName: string, tagLine: string) {
   const url = `${PROXY_URL}/account/${gameName}/${tagLine}`
