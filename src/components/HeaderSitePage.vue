@@ -70,7 +70,7 @@ const handleLogout = () => {
       <nav class="relative flex items-center justify-center flex-grow md:flex-none md:w-3/5">
         <!-- Menu for desktop -->
         <ul class="hidden md:flex md:gap-16">
-          <li><RouterLink to="/apropos" class="text-white hover:text-gray-300 menu-element">Mes tournois</RouterLink></li>
+          <li><RouterLink to="/MesTournois" class="text-white hover:text-gray-300 menu-element">Mes tournois</RouterLink></li>
           <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Classement</RouterLink></li>
           <li><RouterLink to="/Boutique" class="text-white hover:text-gray-300 menu-element">Boutique</RouterLink></li>
         </ul>

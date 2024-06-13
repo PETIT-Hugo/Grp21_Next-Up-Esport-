@@ -263,5 +263,15 @@ export async function getTerrainsByTournoiId(tournoiId: string) {
   }
 }
 
-
+export async function getTournoisByUser(userId: string) {
+  try {
+    const records = await pb.collection('tournoi').getFullList({
+      filter: `id_createur="${userId}"`
+    })
+    return records
+  } catch (error) {
+    console.error('Erreur lors de la récupération des tournois', error)
+    throw error
+  }
+}
 
