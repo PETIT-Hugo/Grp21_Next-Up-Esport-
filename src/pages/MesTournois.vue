@@ -102,8 +102,23 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    
+
+    <div class="flex items-center mx-8 justify-start">
+    
+      <h1 class="mx-4 text-center titre-element-bleu">FONCTIONNEMENT <span class="titre-element-blanc">DES TOURNOIS</span></h1>
+    </div>
+    <div class="flex justify-between items-center">
+      <div class="text-white text-2xl mx-12">
+        <p>&nbsp;</p>
+        <p class="mb-4">Vous pouvez créer jusqu'à <span class="text-[#36C1ED]">3 tournois simultanément</span>, au prix de <span class="text-[#36C1ED]">500 Upcoins pour chaque tournoi</span>. Une fois que votre tournoi est créé, n'hésitez pas à inviter autant de personnes que possible !</p>
+        <p>&nbsp;</p>
+        <p class="mb-4">En effet, si vous parvenez à remplir le nombre de joueurs que vous avez sélectionné et que chacun participe au tournoi, <span class="text-[#36C1ED]">vous gagnerez 300 Upcoins</span>, soit le prix pour créer à nouveau un tournoi.</p>
+        <p>&nbsp;</p>
+        <p class="mb-4">En tant que créateur du tournoi, vous pouvez également choisir ou non de participer à votre propre tournoi.</p>
+        <p>&nbsp;</p>
+    </div>
+  </div></section></div>
 </template>
 
 <style>
