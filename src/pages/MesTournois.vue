@@ -45,13 +45,13 @@ onMounted(async () => {
   <div class="bg-[#1C1A1A] min-h-screen p-8">
     <div class="flex items-center justify-center mx-8 mb-8">
       <div class="flex-grow border-t-2 border-white"></div>
-      <h2 class="mx-12 titre-element-bleu">Mes <span class="titre-element-blanc">tournois</span></h2>
+      <h2 class="mx-12 titre-element-bleu">MES <span class="titre-element-blanc">TOURNOIS</span></h2>
       <div class="flex-grow border-t-2 border-white"></div>
     </div>
     <section class="bg-[#292929]">
       <div class="flex items-center justify-start p-8">
         <h1 class="mx-4 titre-element-bleu">VOS TOURNOIS <span class="titre-element-blanc">EN COURS</span></h1>
-        <div class="mx-8 flex-grow border-t-2 border-white"></div>
+        
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
         <div class="card-tournament bg-gray-900 text-white p-4 rounded-lg shadow-md border mx-8">
