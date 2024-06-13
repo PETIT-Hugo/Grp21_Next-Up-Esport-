@@ -337,111 +337,50 @@ export async function nextRound(tournoiId: string) {
 
 export async function applyMontanteDescendante(tournoiId: string) {
   try {
-    console.log(`Début de la fonction applyMontanteDescendante pour le tournoi ID: ${tournoiId}`)
     const terrains = await getTerrainsByTournoiId(tournoiId)
-
     if (!terrains || terrains.length === 0) {
       throw new Error(`Aucun terrain trouvé pour le tournoi ID: ${tournoiId}`)
     }
 
-    console.log('Terrains récupérés:', terrains)
-
-    // Trier les terrains par numéro
     terrains.sort((a, b) => a.numero - b.numero)
+    const perdants = []
 
-    const dernierTerrain = terrains[terrains.length - 1]
-    let perdantPrecedent = null
-
-    // Traiter chaque terrain
-    for (let i = terrains.length - 1; i >= 0; i--) {
+    // Appliquer la montante descendante
+    for (let i = 0; i < terrains.length; i++) {
       const terrain = terrains[i]
-      const participants = terrain.joueurs
+      const { joueurs } = terrain
+      if (joueurs.length === 0) continue
 
-      if (participants.length === 2) {
-        const gagnant = participants.find((joueur) => joueur.gagnant)
-        const perdant = participants.find((joueur) => !joueur.gagnant)
+      const gagnant = joueurs.find((j) => j.gagnant)
+      const perdant = joueurs.find((j) => !j.gagnant)
 
-        if (terrain.numero === 1) {
-          // Terrain 1, on ne déplace que le perdant
-          if (perdantPrecedent) {
-            console.log(
-              `Ajout du perdant précédent au terrain ${terrains[i + 1].id}:`,
-              perdantPrecedent.id
-            )
-            await pb.collection('terrain').update(terrains[i + 1].id, {
-              participants: [
-                ...new Set([...terrains[i + 1].participants.filter(Boolean), perdantPrecedent.id])
-              ]
-            })
-          }
-          perdantPrecedent = perdant
-        } else if (terrain.numero === dernierTerrain.numero) {
-          // Dernier terrain, on ne déplace que le gagnant
-          if (gagnant) {
-            console.log(`Ajout du gagnant au terrain ${terrains[i - 1].id}:`, gagnant.id)
-            await pb.collection('terrain').update(terrains[i - 1].id, {
-              participants: [
-                ...new Set([...terrains[i - 1].participants.filter(Boolean), gagnant.id])
-              ]
-            })
-          }
-          if (perdantPrecedent) {
-            console.log(`Ajout du perdant précédent au terrain ${terrain.id}:`, perdantPrecedent.id)
-            await pb.collection('terrain').update(terrain.id, {
-              participants: [perdantPrecedent.id].filter(Boolean)
-            })
-          } else {
-            console.log(`Ajout du perdant au terrain ${terrain.id}:`, perdant.id)
-            await pb.collection('terrain').update(terrain.id, {
-              participants: [perdant.id].filter(Boolean)
-            })
-          }
-        } else {
-          // Terrains intermédiaires
-          if (gagnant) {
-            console.log(`Ajout du gagnant au terrain ${terrains[i - 1].id}:`, gagnant.id)
-            await pb.collection('terrain').update(terrains[i - 1].id, {
-              participants: [
-                ...new Set([...terrains[i - 1].participants.filter(Boolean), gagnant.id])
-              ]
-            })
-          }
-          if (perdantPrecedent) {
-            console.log(`Ajout du perdant précédent au terrain ${terrain.id}:`, perdantPrecedent.id)
-            await pb.collection('terrain').update(terrain.id, {
-              participants: [perdantPrecedent.id].filter(Boolean)
-            })
-          } else {
-            console.log(`Nettoyage des participants du terrain ${terrain.id}`)
-            await pb.collection('terrain').update(terrain.id, {
-              participants: []
-            })
-          }
-          perdantPrecedent = perdant
-        }
-      } else if (participants.length === 1) {
-        const seulJoueur = participants[0]
-        if (seulJoueur.gagnant && terrain.numero !== 1) {
-          console.log(
-            `Déplacement du seul joueur gagnant au terrain ${terrains[i - 1].id}:`,
-            seulJoueur.id
-          )
-          await pb.collection('terrain').update(terrains[i - 1].id, {
-            participants: [
-              ...new Set([...terrains[i - 1].participants.filter(Boolean), seulJoueur.id])
-            ]
-          })
-          await pb.collection('terrain').update(terrain.id, {
-            participants: []
-          })
-        }
+      // Déplacer le gagnant au terrain précédent (sauf pour le premier terrain)
+      if (gagnant && i > 0) {
+        await pb.collection('terrain').update(terrains[i - 1].id, {
+          participants: [...new Set([...terrains[i - 1].participants, gagnant.id])]
+        })
+      }
+
+      // Collecter les perdants pour les déplacer au terrain suivant
+      if (perdant) {
+        perdants[i] = perdant.id
       }
     }
 
-    // Remettre à zéro l'état de gagnant de tous les joueurs
-    const joueurs = await getPlayersByTournoiId(tournoiId)
-    for (const joueur of joueurs) {
-      await pb.collection('joueur').update(joueur.id, { gagnant: false })
+    // Déplacer les perdants au terrain suivant
+    for (let i = 0; i < perdants.length - 1; i++) {
+      if (perdants[i] !== undefined) {
+        await pb.collection('terrain').update(terrains[i + 1].id, {
+          participants: [...new Set([...terrains[i + 1].participants, perdants[i]])]
+        })
+      }
+    }
+
+    // Remettre à zéro l'état gagnant de tous les joueurs
+    for (const terrain of terrains) {
+      for (const joueur of terrain.joueurs) {
+        await pb.collection('joueur').update(joueur.id, { gagnant: false })
+      }
     }
 
     console.log('Montante-descendante appliquée avec succès')
@@ -451,6 +390,9 @@ export async function applyMontanteDescendante(tournoiId: string) {
     throw error
   }
 }
+
+
+
 
 
 

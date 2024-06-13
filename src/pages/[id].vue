@@ -68,16 +68,22 @@ const avancerManche = async () => {
 };
 
 const appliquerMontanteDescendante = async () => {
-  try {
-    const result = await applyMontanteDescendante(route.params.id);
-    statusMessage.value = 'La réorganisation des joueurs est terminée!';
-    isFinDeManche.value = false; // Revenir à l'étape "Fin de manche"
-    await nextTick(); // Assurer la mise à jour du DOM
-    await fetchTournoiAndTerrains(); // Rafraîchir les données après mise à jour
-  } catch (error) {
-    statusMessage.value = `Erreur lors de la réorganisation des joueurs: ${error.message}`;
-  }
+    try {
+        const result = await applyMontanteDescendante(route.params.id);
+        if (result.success) {
+            statusMessage.value = 'La réorganisation des joueurs est terminée!';
+            isFinDeManche.value = false; // Revenir à l'étape "Fin de manche"
+            await nextTick(); // Assurer la mise à jour du DOM
+            await fetchTournoiAndTerrains(); // Rafraîchir les données après mise à jour
+        } else {
+            throw new Error('Une erreur est survenue lors de la réorganisation');
+        }
+    } catch (error) {
+        console.error("Erreur lors de l'application de la montante descendante:", error);
+        statusMessage.value = `Erreur lors de la réorganisation des joueurs: ${error.message}`;
+    }
 };
+
 
 const isCreatorRegistered = () => {
   const userId = authStore.getCurrentUserId.value;
@@ -107,9 +113,9 @@ const formatDate = (dateString: string): string => {
       <h1 class="titre-element-bleu">{{ unTournoi?.nom }}</h1>
     </div>
 
-    <div class="flex flex-col md:flex-row justify-center items-start space-y-8 md:space-y-0 md:space-x-8 mx-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mx-12">
       <!-- First Grey Box -->
-      <div class="bg-[#353535] rounded p-8 flex-1">
+      <div class="bg-[#353535] rounded p-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <!-- JEU -->
           <div class="flex items-center">
@@ -146,7 +152,7 @@ const formatDate = (dateString: string): string => {
       </div>
 
       <!-- Second Grey Box for DESCRIPTION -->
-      <div class="bg-[#353535] rounded p-8 flex-1">
+      <div class="bg-[#353535] rounded p-8">
         <div class="text-center mb-4">
           <p class="text-2xl font-black text-blue-200">DESCRIPTION</p>
         </div>
@@ -167,12 +173,12 @@ const formatDate = (dateString: string): string => {
 
     <div class="text-center mt-8">
       <button v-if="isCreatorRegistered()" 
-              class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" 
+              class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 mr-4 bouton_participer" 
               @click="avancerManche">
         Fin de manche
       </button>
       <button v-if="isCreatorRegistered()" 
-              class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" 
+              class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 ml-4 bouton_participer" 
               @click="appliquerMontanteDescendante">
         Manche suivante
       </button>

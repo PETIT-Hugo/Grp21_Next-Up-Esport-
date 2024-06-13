@@ -25,8 +25,8 @@ app.use((req, res, next) => {
 app.get('/api/riot/account/:gameName/:tagLine', async (req, res) => {
   const { gameName, tagLine } = req.params
   const url = `https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${API_KEY}`
+  console.log(`Fetching data from Riot API: ${url}`)
   try {
-    console.log(`Fetching data from Riot API: ${url}`)
     const response = await axios.get(url)
     console.log('Riot API response:', response.data)
     res.json(response.data)
@@ -44,8 +44,8 @@ app.get('/api/riot/account/:gameName/:tagLine', async (req, res) => {
 app.get('/api/riot/matches/:puuid', async (req, res) => {
   const { puuid } = req.params
   const url = `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1&api_key=${API_KEY}`
+  console.log(`Fetching data from Riot API: ${url}`)
   try {
-    console.log(`Fetching data from Riot API: ${url}`)
     const response = await axios.get(url)
     console.log('Riot API response:', response.data)
     res.json(response.data)
@@ -63,8 +63,8 @@ app.get('/api/riot/matches/:puuid', async (req, res) => {
 app.get('/api/riot/match/:matchId', async (req, res) => {
   const { matchId } = req.params
   const url = `https://europe.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${API_KEY}`
+  console.log(`Fetching data from Riot API: ${url}`)
   try {
-    console.log(`Fetching data from Riot API: ${url}`)
     const response = await axios.get(url)
     console.log('Riot API response:', response.data)
     res.json(response.data)

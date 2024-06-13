@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-const PROXY_URL = 'https://nextupesport.petit-hugommi1.fr/api/riot';
+const PROXY_URL = 'https://nextupesport.petit-hugommi1.fr/api/riot'
 
 export async function getAccountByRiotId(gameName: string, tagLine: string) {
   const url = `${PROXY_URL}/account/${gameName}/${tagLine}`
+  console.log('Request URL:', url) // Log the URL
   try {
     const response = await axios.get(url)
     return response.data
@@ -15,6 +16,7 @@ export async function getAccountByRiotId(gameName: string, tagLine: string) {
 
 export async function getLastMatchId(puuid: string) {
   const url = `${PROXY_URL}/matches/${puuid}`
+  console.log('Request URL:', url) // Log the URL
   try {
     const response = await axios.get(url)
     return response.data[0]
@@ -26,6 +28,7 @@ export async function getLastMatchId(puuid: string) {
 
 export async function getMatchResult(matchId: string, puuid: string) {
   const url = `${PROXY_URL}/match/${matchId}`
+  console.log('Request URL:', url) // Log the URL
   try {
     const response = await axios.get(url)
     const matchData = response.data
