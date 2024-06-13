@@ -30,7 +30,7 @@ const handleLogout = () => {
 <template>
   <header class="bg-[#1C1A1A] py-4 md:py-6">
     <div class="container mx-auto flex items-center justify-between px-4 md:px-6">
-      <RouterLink to="/" class="flex items-center mx-16">
+      <RouterLink to="/" class="flex items-center mx-4 md:mx-16">
         <img src="../components/icons/nextupfinal.webp" class="w-[30vw] max-w-[200px] min-w-[150px] mr-4" />
       </RouterLink>
       <nav class="relative flex items-center justify-center flex-grow md:flex-none md:w-3/5">
@@ -46,7 +46,7 @@ const handleLogout = () => {
         <ul class="hidden md:flex md:gap-16">
           <li><div class="text-[#36C1ED] menu-element-upcoins">{{ upcoins }}</div></li>
         </ul>
-        <div class="relative flex items-center ml-12"> <!-- Ajout de marge à gauche ici -->
+        <div class="relative flex items-center ml-12 hidden md:flex"> <!-- Cacher sur mobile -->
           <RouterLink to="/Profil">
             <PhotoDeProfil class="w-12 h-12 cursor-pointer"/>
           </RouterLink>

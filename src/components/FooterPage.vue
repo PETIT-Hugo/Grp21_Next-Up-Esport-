@@ -11,8 +11,8 @@ import TwitterLogo from './icons/TwitterLogo.vue';
   background-color: #1C1A1A;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:wght@100..900&display=swap');
 
 .uppercase-title {
   font-family: 'Mulish', sans-serif;
@@ -67,11 +67,17 @@ import TwitterLogo from './icons/TwitterLogo.vue';
         <div class="w-2/8 footer-section">
           <h3 class="text-white mb-1 uppercase-title">NOUS CONTACTER</h3>
           <ul class="space-y-2">
-            <li><RouterLink to="#" class="text-white hover:text-gray-300 elements-title">contact@nextup-esport.com</RouterLink></li>
+            <li><a href="mailto:contact@nextup-esport.com" class="text-white hover:text-gray-300 elements-title">contact@nextup-esport.com</a></li>
             <li class="flex items-center">
-              <TwitterLogo class="mr-2 hover:text-gray-300" /> <!-- Ajout de l'effet hover -->
-              <InstagramLogo class="mx-2 hover:text-gray-300" /> <!-- Ajout de l'effet hover -->
-              <DiscordLogo class="ml-2 hover:text-gray-300" /> <!-- Ajout de l'effet hover -->
+              <a href="https://twitter.com" target="_blank" class="mr-2 hover:text-gray-300">
+                <TwitterLogo />
+              </a>
+              <a href="https://instagram.com" target="_blank" class="mx-2 hover:text-gray-300">
+                <InstagramLogo />
+              </a>
+              <a href="https://discord.com" target="_blank" class="ml-2 hover:text-gray-300">
+                <DiscordLogo />
+              </a>
             </li>
           </ul>
         </div>
@@ -83,15 +89,16 @@ import TwitterLogo from './icons/TwitterLogo.vue';
           </ul>
         </div>
         <!-- Logo -->
-        <div class="w-2/8 footer-logo flex justify-end">
-          <img src="../components/icons/nextupfinal.webp" class="w-[30vw] max-w-[200px] min-w-[150px] mr-4" />
+        <div class="w-2/8 footer-logo flex justify-end md:justify-center">
+          <img src="../components/icons/nextupfinal.webp" class="w-[30vw] max-w-[200px] min-w-[150px] mr-4 md:mr-0" />
         </div>
       </div>
       <!-- Flèche SVG et texte de droits d'auteur -->
       <div class="flex items-center justify-end text-sm text-white mt-4 uppercase-title">
-        <FlecheIcon/> <!-- Inclusion de la flèche SVG -->
+        <FlecheIcon /> <!-- Inclusion de la flèche SVG -->
         <span class="ml-2">© 2024 NextUp E-sport</span>
       </div>
     </div>
   </footer>
 </template>
+  
