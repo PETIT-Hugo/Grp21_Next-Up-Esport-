@@ -30,14 +30,14 @@ const handleLogout = () => {
 <template>
   <header class="bg-[#1C1A1A] py-4 md:py-6">
     <div class="container mx-auto flex items-center justify-between px-4 md:px-6">
-      <RouterLink to="/" class="flex items-center mx-16">
+      <RouterLink to="/" class="flex items-center mx-4 md:mx-16">
         <img src="../components/icons/nextupfinal.webp" class="w-[30vw] max-w-[200px] min-w-[150px] mr-4" />
       </RouterLink>
       <nav class="relative flex items-center justify-center flex-grow md:flex-none md:w-3/5">
         <!-- Menu for desktop -->
         <ul class="hidden md:flex md:gap-16">
           <li><RouterLink to="/MesTournois" class="text-white hover:text-gray-300 menu-element">Mes tournois</RouterLink></li>
-          <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Classement</RouterLink></li>
+          <li><RouterLink to="/Classement" class="text-white hover:text-gray-300 menu-element">Classement</RouterLink></li>
           <li><RouterLink to="/Boutique" class="text-white hover:text-gray-300 menu-element">Boutique</RouterLink></li>
         </ul>
         <ul class="hidden md:flex md:gap-16 ml-12">
@@ -46,8 +46,10 @@ const handleLogout = () => {
         <ul class="hidden md:flex md:gap-16">
           <li><div class="text-[#36C1ED] menu-element-upcoins">{{ upcoins }}</div></li>
         </ul>
-        <div class="relative flex items-center ml-12"> <!-- Ajout de marge à gauche ici -->
-          <PhotoDeProfil class="w-12 h-12" />
+        <div class="relative flex items-center ml-12 hidden md:flex"> <!-- Cacher sur mobile -->
+          <RouterLink to="/Profil">
+            <PhotoDeProfil class="w-12 h-12 cursor-pointer"/>
+          </RouterLink>
           <div @click="toggleDropdown" class="cursor-pointer">
             <FlecheBleu class="w-12 h-12" />
           </div>
@@ -73,7 +75,7 @@ const handleLogout = () => {
       </svg>
       <ul class="text-white text-center">
         <li class="py-4 border-b border-gray-700"><RouterLink to="/MesTournois" @click="toggleMenu">Mes tournois</RouterLink></li>
-        <li class="py-4 border-b border-gray-700"><RouterLink to="/connexion" @click="toggleMenu">Classement</RouterLink></li>
+        <li class="py-4 border-b border-gray-700"><RouterLink to="/Classement" @click="toggleMenu">Classement</RouterLink></li>
         <li class="py-4"><RouterLink to="/Boutique" @click="toggleMenu">Boutique</RouterLink></li>
         <!-- Bouton de déconnexion mobile -->
         <li class="py-4"><button @click="handleLogout" class="text-white bg-red-500 rounded-md px-4 py-2">Se déconnecter</button></li>

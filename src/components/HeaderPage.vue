@@ -13,7 +13,7 @@ const toggleMenu = () => {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .uppercase-title {
   font-family: 'Mulish', sans-serif;
@@ -37,7 +37,7 @@ const toggleMenu = () => {
 <template>
   <header class="bg-[#1C1A1A] py-4 md:py-6">
     <div class="container mx-auto flex items-center justify-between px-4 md:px-6">
-      <RouterLink to="/" class="flex items-center mx-16">
+      <RouterLink to="/" class="flex items-center">
         <img src="../components/icons/nextupfinal.webp" class="w-[30vw] max-w-[200px] min-w-[150px] mr-4" />
       </RouterLink>
       <nav class="relative flex items-center justify-center flex-grow md:flex-none md:w-1/2">
@@ -70,11 +70,3 @@ const toggleMenu = () => {
   </header>
   <div class="w-full h-0.5 bg-[#353535] opacity-5"></div> <!-- Barre blanche -->
 </template>
-
-
-
-
-
-
-
-

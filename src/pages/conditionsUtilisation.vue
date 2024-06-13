@@ -1,71 +1,18 @@
 <script setup lang="ts">
-
+// Aucun script n'est nécessaire pour ce cas statique.
 </script>   
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-.custom-bg {
-  background-color: #1C1A1A;
-}
-
-.titre-element-bleu {
-    font-family: 'Mulish', sans-serif;
-    font-size:50px;
-    color: #36C1ED;
-    font-weight: 800;
-    letter-spacing: -2.5px; /* Espacement des lettres de -4% */
-
-}
-
-.titre-element-blanc {
-    font-family: 'Mulish', sans-serif;
-    font-size:50px;
-    color: #ffffff;
-    font-weight: 800;
-    letter-spacing: -2.5px; /* Espacement des lettres de -4% */
-
-}
-
-p {
-            margin-bottom: 1em; /* Ajoute un espace entre les paragraphes */
-            color: #ffffff;
-            margin-left:6rem;
-            margin-right:6rem;
-            font-family:'Roboto', sans-serif;
-            font-weight:300;
-        }
-
-h2 {
-            margin-top: 1.5em; /* Ajoute un espace au-dessus des titres */
-            margin-bottom: 1em;
-            color: #ffffff;
-            margin-left:6rem;
-            margin-right:6rem;
-            font-family:'Roboto', sans-serif;
-            font-weight:bold;
-        }
-
-li {
-    color: #ffffff;
-    font-family:'Roboto', sans-serif;
-    font-weight:300;
-}
-</style>
-
 <template>
-    <div class="custom-bg py-6 container">
-        <div class="flex items-center justify-center">
-            <div class="bg-white w-[160px] h-[4px]"></div>
-                <div class="mx-4">
-                    <h1 class="titre-element-bleu">CONDITIONS GÉNÉRALES<span class="titre-element-blanc"> D'UTILISATION</span></h1>
-                </div>
-            <div class="bg-white w-[160px] h-[4px]"></div>
-        </div>
+  <div class="custom-bg py-6 container">
+    <div class="flex items-center justify-center">
+      <div class="bg-white w-20 md:w-40 h-1 md:h-1"></div>
+      <div class="mx-2 text-center">
+        <h1 class="titre-element-bleu">CONDITIONS GÉNÉRALES<span class="titre-element-blanc"> D'UTILISATION</span></h1>
+      </div>
+      <div class="bg-white w-20 md:w-40 h-1 md:h-1"></div>
+    </div>
 
-        <h2>ARTICLE 1 : OBJET</h2>
+    <h2>ARTICLE 1 : OBJET</h2>
     <p>Next Up Esport est une plateforme en ligne française dédiée aux entraînements aux compétitions esportives, proposant à ses utilisateurs de créer leur propre tournois sous le format up & down.</p>
     <p>Créé en 2024, Next Up Esport a pour but de développer la culture de l’esport en France en proposant une plateforme réunissant joueurs et organisateurs de tournoi. Le site propose d’une part, des outils aux organisateurs qui souhaitent se lancer dans l’organisation de tournois esport, et d’autre part, pour les joueurs, un endroit où se réunir pour affronter d’autres joueurs de tous niveaux dans un seul tournoi, sous le format montante-descendante (up & down), format compétitif mais plus permissif afin de permettre à tout le monde de s’améliorer.</p>
     <p>Ces CGU ont pour but de définir le conditions dans lesquelles les utilisateurs (vous) peuvent utiliser et visiter nextup-esport.fr</p>
@@ -118,7 +65,7 @@ li {
     <p>Vous et la société reconnaissez avoir pleine et entière connaissance des obligations liés à la réglementation concernant la protection des données à caractère personnel, qu’elle soit européenne ou nationale, notamment le RGPD ainsi que toute réglementation applicable venant s’y ajouter ultérieurement.</p>
     <p>Ainsi la société s'engage à ne collecter uniquement les données nécessaires pour assurer les services qu’elle propose.</p>
     <p>Les données personnelles suivantes :</p>
-    <ul class="mx-24 mt-4 mb-4">
+    <ul class="mx-4 md:mx-24 mt-4 mb-4">
         <li>· Adresse électronique</li>
         <li>· Pseudo Next Up Esport</li>
         <li>· Identifiant Riot Games</li>
@@ -155,8 +102,8 @@ li {
 
     <h2>ARTICLE 12 - REGLES DE CONDUITE</h2>
     <p>En créant votre compte, vous vous engagez à respecter les règles suivantes :</p>
-    <ul class="mx-24 mt-4 mb-4">
-        <li>· Vous vous tenez à respecter toutes les lois en vigueur sur le territoire depuis  lequel vous utilisez le site</li>
+    <ul class="mx-4 md:mx-24 mt-4 mb-4">
+        <li>· Vous vous tenez à respecter toutes les lois en vigueur sur le territoire depuis lequel vous utilisez le site</li>
         <li>· Vous ne participerez à aucune activité ayant pour but de déranger ou détruire le site</li>
         <li>· Vous n’interférerez d’aucune façon avec les systèmes de sécurité du site</li>
         <li>· Vous n'essayez pas ne vous approprier les informations personnelles d’autres utilisateurs</li>
@@ -172,15 +119,90 @@ li {
     <h2>ARTICLE 14 - SERVICE CLIENT</h2>
     <p>Pour toute aide nécessaire ou besoin d’information complémentaire, vous pouvez nous contacter via les formulaires de contact disponibles sur le site ou via nos différents réseaux sociaux dont les liens sont disponibles sur les pages du site.</p>
 
-    <h2>ARTICLE 15 -  LOI APPLICABLE ET RÈGLEMENT DES LITIGES</h2>
+    <h2>ARTICLE 15 - LOI APPLICABLE ET RÈGLEMENT DES LITIGES</h2>
     <p>Les CGU sont régies et interprétées conformément au droit français.</p>
     <p>Tout différend lié à l’interprétation de ces CGU sera soumis aux tribunaux français compétents.</p>
-
-
-    
-
-
-</div>
-
-
+  </div>
 </template>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap');
+
+.custom-bg {
+  background-color: #1C1A1A;
+}
+
+.titre-element-bleu {
+  font-family: 'Mulish', sans-serif;
+  font-size: 4vw; /* Responsive font size */
+  
+  color: #36C1ED;
+  font-weight: 800;
+  letter-spacing: -2.5px; /* Espacement des lettres de -2.5% */
+}
+
+.titre-element-blanc {
+  font-family: 'Mulish', sans-serif;
+  font-size: 4vw; /* Responsive font size */
+  
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: -2.5px; /* Espacement des lettres de -2.5% */
+}
+
+p {
+  margin-bottom: 1em; /* Ajoute un espace entre les paragraphes */
+  color: #ffffff;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 4vw; /* Responsive font size */
+  max-font-size: 20px;
+}
+
+h2 {
+  margin-top: 1.5em; /* Ajoute un espace au-dessus des titres */
+  margin-bottom: 1em;
+  color: #ffffff;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 5vw; /* Responsive font size */
+  max-font-size: 24px;
+}
+
+li {
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 4vw; /* Responsive font size */
+  max-font-size: 20px;
+}
+
+ul {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  p, li {
+    margin-left: 6rem;
+    margin-right: 6rem;
+    font-size: 20px; /* Reset font size for larger screens */
+  }
+
+  h2 {
+    margin-left: 6rem;
+    margin-right: 6rem;
+    font-size: 24px; /* Reset font size for larger screens */
+  }
+
+  ul {
+    margin-left: 6rem;
+    margin-right: 6rem;
+  }
+}
+</style>
