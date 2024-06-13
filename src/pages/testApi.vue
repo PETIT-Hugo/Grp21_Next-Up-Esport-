@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Obtenir des informations sur un compte Riot Games proxy</h1>
+    <h1>Obtenir des informations sur un compte Riot Games carre</h1>
     <form @submit.prevent="fetchAccountData">
       <div>
         <label for="gameName">Pseudo Riot Games:</label>
