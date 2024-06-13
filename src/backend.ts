@@ -395,3 +395,41 @@ export async function getPlayersByVictories() {
     throw error;
   }
 }
+
+// Fonction pour obtenir les détails de l'utilisateur
+export async function getUserDetails(userId: string) {
+  try {
+    console.log(`Fetching details for user ID: ${userId}`);
+    const user = await pb.collection('utilisateur').getOne(userId);
+    console.log(`User details fetched:`, user);
+    return user;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des détails de l\'utilisateur', error);
+    throw error;
+  }
+}
+
+// Fonction pour mettre à jour les informations de l'utilisateur
+export async function updateUserDetails(userId: string, userDetails: Partial<UtilisateurRecord>) {
+  try {
+    console.log(`Updating user ID: ${userId} with details:`, userDetails);
+    const updatedUser = await pb.collection('utilisateur').update(userId, userDetails);
+    console.log(`User details updated:`, updatedUser);
+    return updatedUser;
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour des détails de l\'utilisateur', error);
+    throw error;
+  }
+}
+
+// Fonction pour supprimer l'utilisateur
+export async function deleteUser(userId: string) {
+  try {
+    console.log(`Deleting user ID: ${userId}`);
+    await pb.collection('utilisateur').delete(userId);
+    console.log(`User deleted`);
+  } catch (error) {
+    console.error('Erreur lors de la suppression de l\'utilisateur', error);
+    throw error;
+  }
+}

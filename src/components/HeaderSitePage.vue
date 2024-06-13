@@ -47,7 +47,9 @@ const handleLogout = () => {
           <li><div class="text-[#36C1ED] menu-element-upcoins">{{ upcoins }}</div></li>
         </ul>
         <div class="relative flex items-center ml-12"> <!-- Ajout de marge à gauche ici -->
-          <PhotoDeProfil class="w-12 h-12" />
+          <RouterLink to="/Profil">
+            <PhotoDeProfil class="w-12 h-12 cursor-pointer"/>
+          </RouterLink>
           <div @click="toggleDropdown" class="cursor-pointer">
             <FlecheBleu class="w-12 h-12" />
           </div>
@@ -73,7 +75,7 @@ const handleLogout = () => {
       </svg>
       <ul class="text-white text-center">
         <li class="py-4 border-b border-gray-700"><RouterLink to="/MesTournois" @click="toggleMenu">Mes tournois</RouterLink></li>
-        <li class="py-4 border-b border-gray-700"><RouterLink to="/connexion" @click="toggleMenu">Classement</RouterLink></li>
+        <li class="py-4 border-b border-gray-700"><RouterLink to="/Classement" @click="toggleMenu">Classement</RouterLink></li>
         <li class="py-4"><RouterLink to="/Boutique" @click="toggleMenu">Boutique</RouterLink></li>
         <!-- Bouton de déconnexion mobile -->
         <li class="py-4"><button @click="handleLogout" class="text-white bg-red-500 rounded-md px-4 py-2">Se déconnecter</button></li>
