@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { RouterLink } from 'vue-router';
 import LogoNextUp from './icons/LogoNextUp.vue';
 import UpCoin from './icons/UpCoin.vue';
 import PhotoDeProfil from './icons/PhotoDeProfil.vue';
 import FlecheBleu from './icons/FlecheBleu.vue';
 import { logout } from '@/services/authService'; 
-import type { UtilisateurResponse } from '@/pocketbase-types';
+import { useAuthStore } from '@/store/auth'; // Importer le store
 
-const props = defineProps<UtilisateurResponse>();
-
+const authStore = useAuthStore();
 const isMenuOpen = ref(false);
 const isDropdownOpen = ref(false);
+const upcoins = computed(() => authStore.getUpcoins.value); // Ajouter cette ligne
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
@@ -25,41 +25,7 @@ const handleLogout = () => {
   logout();
   console.log('User logged out'); 
 };
-
-
 </script>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-.uppercase-title {
-  font-family: 'Mulish', sans-serif;
-  font-weight: 700; /* Gras */
-}
-
-.elements-title {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 200; 
-  font-size: 12.5px;
-  color: #7C7C7C;
-}
-
-.menu-element {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 20px;
-  color: #FFFFFF;
-  font-weight: bold;
-}
-
-.menu-element-upcoins {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 20px;
-  color: #36C1ED;
-  font-weight: bold;
-}
-</style>
 
 <template>
   <header class="bg-[#1C1A1A] py-4 md:py-6">
@@ -78,7 +44,7 @@ const handleLogout = () => {
           <UpCoin class="w-12 h-12" />
         </ul>
         <ul class="hidden md:flex md:gap-16">
-          <li><div class="text-[#36C1ED] menu-element-upcoins">{{ props.upcoins }}</div></li>
+          <li><div class="text-[#36C1ED] menu-element-upcoins">{{ upcoins }}</div></li>
         </ul>
         <div class="relative flex items-center ml-12"> <!-- Ajout de marge à gauche ici -->
           <PhotoDeProfil class="w-12 h-12" />
@@ -106,7 +72,7 @@ const handleLogout = () => {
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
       <ul class="text-white text-center">
-        <li class="py-4 border-b border-gray-700"><RouterLink to="/apropos" @click="toggleMenu">Mes tournois</RouterLink></li>
+        <li class="py-4 border-b border-gray-700"><RouterLink to="/MesTournois" @click="toggleMenu">Mes tournois</RouterLink></li>
         <li class="py-4 border-b border-gray-700"><RouterLink to="/connexion" @click="toggleMenu">Classement</RouterLink></li>
         <li class="py-4"><RouterLink to="/Boutique" @click="toggleMenu">Boutique</RouterLink></li>
         <!-- Bouton de déconnexion mobile -->

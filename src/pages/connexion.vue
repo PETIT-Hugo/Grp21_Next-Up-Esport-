@@ -21,6 +21,7 @@ const handleSignIn = async () => {
     const user = await signIn(identifier.value, mdp.value);
     statusMessage.value = `Connexion réussie, bienvenue ${user.pseudo} !`;
     authStore.setCurrentUserId(user.id);
+    authStore.setUpcoins(user.upcoins); // Ajouter cette ligne pour définir les upcoins
     console.log('User ID set:', user.id); 
   } catch (e: any) {
     console.error(e);
@@ -33,6 +34,7 @@ const handleSignIn = async () => {
     }
   }
 }
+
 </script>
 
 <template>
