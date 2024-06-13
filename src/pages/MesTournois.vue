@@ -45,13 +45,13 @@ onMounted(async () => {
   <div class="bg-[#1C1A1A] min-h-screen p-8">
     <div class="flex items-center justify-center mx-8 mb-8">
       <div class="flex-grow border-t-2 border-white"></div>
-      <h2 class="mx-12 titre-element-bleu">Mes <span class="titre-element-blanc">tournois</span></h2>
+      <h2 class="mx-12 titre-element-bleu">MES <span class="titre-element-blanc">TOURNOIS</span></h2>
       <div class="flex-grow border-t-2 border-white"></div>
     </div>
     <section class="bg-[#292929]">
       <div class="flex items-center justify-start p-8">
         <h1 class="mx-4 titre-element-bleu">VOS TOURNOIS <span class="titre-element-blanc">EN COURS</span></h1>
-        <div class="mx-8 flex-grow border-t-2 border-white"></div>
+        
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
         <div class="card-tournament bg-gray-900 text-white p-4 rounded-lg shadow-md border mx-8">
@@ -102,8 +102,23 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    
+
+    <div class="flex items-center mx-8 justify-start">
+    
+      <h1 class="mx-4 text-center titre-element-bleu">FONCTIONNEMENT <span class="titre-element-blanc">DES TOURNOIS</span></h1>
+    </div>
+    <div class="flex justify-between items-center">
+      <div class="text-white text-2xl mx-12">
+        <p>&nbsp;</p>
+        <p class="mb-4">Vous pouvez créer jusqu'à <span class="text-[#36C1ED]">3 tournois simultanément</span>, au prix de <span class="text-[#36C1ED]">500 Upcoins pour chaque tournoi</span>. Une fois que votre tournoi est créé, n'hésitez pas à inviter autant de personnes que possible !</p>
+        <p>&nbsp;</p>
+        <p class="mb-4">En effet, si vous parvenez à remplir le nombre de joueurs que vous avez sélectionné et que chacun participe au tournoi, <span class="text-[#36C1ED]">vous gagnerez 300 Upcoins</span>, soit le prix pour créer à nouveau un tournoi.</p>
+        <p>&nbsp;</p>
+        <p class="mb-4">En tant que créateur du tournoi, vous pouvez également choisir ou non de participer à votre propre tournoi.</p>
+        <p>&nbsp;</p>
+    </div>
+  </div></section></div>
 </template>
 
 <style>

@@ -68,18 +68,22 @@ const getBannerImage = (game: string): string => {
   display: block;
   width: 100%;
   text-align: center;
-  background-color: #4299e1;
+  background-color: #36C1ED;
   border: none;
   border-radius: 0.375rem;
   padding: 0.5rem;
   color: white;
   font-weight: bold;
   cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  transition: box-shadow 0.3s ease; /* Ajout de la transition pour un effet de lueur en douceur */
 }
 
 .card-tournament button:hover {
-  background-color: #3182ce;
+  background-color: #36C1ED;
+  box-shadow: 0 0 10px 2px rgba(54, 193, 237, 0.8); /* Lueur bleue */
 }
+
 </style>
 
 <template>

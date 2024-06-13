@@ -68,7 +68,7 @@ const toggleMenu = () => {
       </ul>
     </div>
   </header>
-  <div class="w-full h-0.5 bg-[#D6EAF0]"></div> <!-- Barre blanche -->
+  <div class="w-full h-0.5 bg-[#353535] opacity-5"></div> <!-- Barre blanche -->
 </template>
 
 
