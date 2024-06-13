@@ -57,6 +57,7 @@ export type JoueurRecord = {
 	num_terrain?: number
 	victoires?: number
 	id_tournoi?: RecordIdString
+	gagnant?: boolean
 }
 
 export type TerrainRecord = {

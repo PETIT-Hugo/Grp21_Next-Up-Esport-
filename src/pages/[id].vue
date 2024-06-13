@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { oneIDTournoi, getTerrainsByTournoiId, registerPlayer } from '@/backend';
+import { oneIDTournoi, getTerrainsByTournoiId, registerPlayer, nextRound, getPlayersByTournoiId, getUserTournaments } from '@/backend';
 import { useAuthStore } from '@/store/auth';
 import TerrainCard from '../components/TerrainCard.vue';
 
@@ -9,16 +9,31 @@ const route = useRoute();
 const authStore = useAuthStore();
 const unTournoi = ref(null);
 const terrains = ref([]);
+const joueurs = ref([]);
 const statusMessage = ref('');
+const userTournaments = ref({ createdTournaments: [], joinedTournaments: [] });
 
 const fetchTournoiAndTerrains = async () => {
   try {
     const tournoiId = route.params.id;
     unTournoi.value = await oneIDTournoi(tournoiId);
     terrains.value = await getTerrainsByTournoiId(tournoiId);
+    joueurs.value = await getPlayersByTournoiId(tournoiId);
     console.log('Terrains after fetch:', terrains.value);
+    console.log('Joueurs after fetch:', joueurs.value);
   } catch (error) {
     console.error('Erreur lors de la récupération du tournoi et des terrains:', error);
+  }
+};
+
+const fetchUserTournaments = async () => {
+  try {
+    const userId = authStore.getCurrentUserId.value;
+    if (userId) {
+      userTournaments.value = await getUserTournaments(userId);
+    }
+  } catch (error) {
+    console.error('Erreur lors de la récupération des tournois de l\'utilisateur:', error);
   }
 };
 
@@ -39,8 +54,27 @@ const inscrireJoueur = async () => {
   }
 };
 
+const avancerManche = async () => {
+  try {
+    await nextRound(route.params.id);
+    statusMessage.value = 'La manche suivante a commencé!';
+    await fetchTournoiAndTerrains(); // Rafraîchir les données après mise à jour
+  } catch (error) {
+    statusMessage.value = `Erreur lors du passage à la manche suivante: ${error.message}`;
+  }
+};
+
+
+const isCreatorRegistered = () => {
+  const userId = authStore.getCurrentUserId.value;
+  const isCreator = unTournoi.value?.id_createur === userId;
+  const isRegistered = joueurs.value.some(joueur => joueur.id_utilisateur === userId);
+  return isCreator && isRegistered;
+};
+
 onMounted(() => {
   fetchTournoiAndTerrains();
+  fetchUserTournaments();
 });
 
 const formatDate = (dateString: string): string => {
@@ -51,6 +85,8 @@ const formatDate = (dateString: string): string => {
     day: 'numeric',
   });
 };
+
+
 </script>
 
 <template>
@@ -118,7 +154,8 @@ const formatDate = (dateString: string): string => {
     </div>
 
     <div class="text-center mt-8">
-      <button class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" @click="inscrireJoueur">Participer au tournoi</button>
+      <button v-if="isCreatorRegistered()" class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" @click="avancerManche">Fin de manche</button>
+      <button v-else class="glow-button bg-[#36C1ED] text-white py-4 px-8 rounded mt-4 bouton_participer" @click="inscrireJoueur">Participer au tournoi</button>
       <p v-if="statusMessage" class="text-blue-200 mt-4">{{ statusMessage }}</p>
     </div>
   </div>
