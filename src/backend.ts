@@ -275,3 +275,26 @@ export async function getTournoisByUser(userId: string) {
   }
 }
 
+// backend.ts
+
+
+export async function getPlayersByVictories() {
+  try {
+    const utilisateurs = await pb.collection('utilisateur').getFullList({
+      sort: '-victoires' // Sort by victories in descending order
+    });
+
+    const players = utilisateurs.map(user => ({
+      id: user.id,
+      victoires: user.victoires,
+      pseudo: user.pseudo,
+      email: user.mail,
+      avatarUrl: user.pp, // Assuming the profile picture is stored in the 'pp' field
+    }));
+
+    return players;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des utilisateurs par victoires', error);
+    throw error;
+  }
+}

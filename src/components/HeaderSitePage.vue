@@ -37,7 +37,7 @@ const handleLogout = () => {
         <!-- Menu for desktop -->
         <ul class="hidden md:flex md:gap-16">
           <li><RouterLink to="/MesTournois" class="text-white hover:text-gray-300 menu-element">Mes tournois</RouterLink></li>
-          <li><RouterLink to="/connexion" class="text-white hover:text-gray-300 menu-element">Classement</RouterLink></li>
+          <li><RouterLink to="/Classement" class="text-white hover:text-gray-300 menu-element">Classement</RouterLink></li>
           <li><RouterLink to="/Boutique" class="text-white hover:text-gray-300 menu-element">Boutique</RouterLink></li>
         </ul>
         <ul class="hidden md:flex md:gap-16 ml-12">
