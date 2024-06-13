@@ -25,6 +25,8 @@ const handleLogout = () => {
   logout();
   console.log('User logged out'); 
 };
+
+
 </script>
 
 <style>
@@ -76,7 +78,7 @@ const handleLogout = () => {
           <UpCoin class="w-12 h-12" />
         </ul>
         <ul class="hidden md:flex md:gap-16">
-          <li><RouterLink to="/connexion" class="text-[#36C1ED] menu-element-upcoins">{{ props.upcoins }} 1500</RouterLink></li>
+          <li><div class="text-[#36C1ED] menu-element-upcoins">{{ props.upcoins }}</div></li>
         </ul>
         <div class="relative flex items-center ml-12"> <!-- Ajout de marge à gauche ici -->
           <PhotoDeProfil class="w-12 h-12" />
