@@ -101,6 +101,10 @@ const handleSignUp = async () => {
 </script>
 
 <style>
+.typo {
+  font-family: 'Orbitron', sans-serif;
+}
+
 .custom-bg {
   background-color: #1C1A1A;
 }
@@ -158,23 +162,23 @@ const handleSignUp = async () => {
     
     <div class="custom-bg  flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <p>
-        <label class="text-[#7C7C7C]">Pseudo Riot</label>
+        <label class="text-[#7C7C7C] typo">Pseudo Riot</label>
         <input type="text" id="pseudoRiot" placeholder="exemple#EUW*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="pseudoRiot">
       </p>
-      <p>
-        <label class="text-[#7C7C7C]">Adresse Mail</label>
+      <p class="mt-6">
+        <label class="text-[#7C7C7C] typo">Adresse Mail</label>
         <input type="email" placeholder="exemple@abc.fr*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="mail">
       </p>
-      <p>
-        <label class="text-[#7C7C7C]">Pseudo Next Up</label>
+      <p class="mt-6">
+        <label class="text-[#7C7C7C] typo">Pseudo Next Up</label>
         <input type="text" placeholder="Votre pseudo*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="pseudoNextUp">
       </p>
-      <p>
-        <label class="text-[#7C7C7C]">Mot de passe</label>
+      <p class="mt-6">
+        <label class="text-[#7C7C7C] typo">Mot de passe</label>
         <input type="password" minlength="1" placeholder="strongMDP123*"  class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"  v-model="mdp">
       </p>
-      <p>
-        <label class="text-[#7C7C7C]">Confirmer le mot de passe</label>
+      <p class="mt-6">
+        <label class="text-[#7C7C7C] typo">Confirmer le mot de passe</label>
         <input type="password" minlength="1" placeholder="strongMDP123*" class="appearance-none bg-[#292929] rounded-none relative block w-full px-16 py-4  placeholder-gray-500 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="confirmMdp">
       </p>
     </div>
@@ -197,7 +201,7 @@ const handleSignUp = async () => {
 
       
   <body class="flex  justify-center">
-  <div class="text-center">
+  <div class="text-center mt-6">
     <button @click="handleSignUp" class="bg-[#36C1ED] text-white hover:text-gray-300 rounded-md px-10 py-4 creer_un_compte">
       Créer un compte
     </button>

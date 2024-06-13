@@ -31,7 +31,7 @@ const handleBuyClick = () => {
       <div class="barre-bleue absolute bottom-16 w-full bg-[#36C1ED] h-1"></div>
       <h2 class="cosmetique-name absolute bottom-0 w-full bg-black bg-opacity-50 text-white text-center m-0 py-4 text-2xl">{{ props.nom }}</h2>
     </div>
-    <button class="flex items-center justify-center space-x-2 price-button w-10/12 mx-auto mt-3 mb-3 py-3 bg-[#36C1ED] text-white rounded-lg text-center cursor-pointer hover:bg-[#5aecff] hover:shadow-lg transition duration-300 ease-in-out" 
+    <button class="flex items-center justify-center space-x-2 price-button w-10/12 mx-auto mt-10 mb-3 py-3 bg-[#36C1ED] text-white rounded-lg text-center cursor-pointer hover:bg-[#5aecff] hover:shadow-lg transition duration-300 ease-in-out" 
     @click="handleBuyClick">
       <UpCoin class="w-16 h-16" />
       <span class="prix -ml-4">{{ props.prix }}</span> 
